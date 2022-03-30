@@ -1,0 +1,540 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8/3/2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:53:21 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc" class="file"><acronym title="C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc">C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">64</td></tr>
+</table>
+</td>
+</table><a name="IDQIBYM1DW1UN3GWSRJNL04Y1ONKNLBSXHAWF0JYE23XKBQXUS2VFG"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDME4N0PDGCQDRH1L4LARVX5NOULWTEBGTAPGVG0NXKLL3355ZLPUO">Clearance Constraint (Gap=8mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2YD2SOHA3MGIDIUR5KWMH3JSSGJV2RYVE33LQAFJRPO2NQB2RNLB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVIDCCJAKSXZJDEBZAPHWKHWMNOJPFJFMK5FFVAKUSEBZTPW4CQYE">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBZXM1CVPUU2YD4N01UJ22E050L2YSQKY0W0KGCTCLXORDAPFRXB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDBC3LKITULA0JCWQFEX3RFIEZCRWZKBACZA05FCOSMN32GJBIH1M">Width Constraint (Min=6mil) (Max=10000mil) (Preferred=15mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDC2MYEEFG2IDTKWO0SBFTEXYQ3IASFJTGLW4UWPPD23G1Q40U3QLM">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBU1BAVJ3WXT5J0LXLUBDNESNQFEIG1VEUJOISVNT2QJGVRSWIOVP">Hole Size Constraint (Min=13.78mil) (Max=100000mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRMCO0FQMRYREJCYMJKVSSSBMFNK4AJ2JHQ3SWS0DJCWFWMENELF">Hole To Hole Clearance (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1B5B5YE4BLHKOCTK3LHIAITMWNQNT4BQICIKSBDX43MSABEJSKZO">Minimum Solder Mask Sliver (Gap=10mil) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEZANMQFMUZDPCEH2BZZROESDNDW5FUINP5GQAVIT4QNK4QXGCZHN">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHCBSVCQUWBKCHK4O0CGV4HJC0NYRBKPJLSTOKENRLWQHE4NTVMOE">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">43</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRVHVARA1Q5PKIG4O20CK3HAOTCAU2MLTOWT1T3PBSCMYMX2252BB">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDE51WVFQSAE3OIGFJDCVFSS50ZGPL3LCVFHSX1KKFUGYQCETYP21G">Board Clearance Constraint (Gap=0mil) (All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJUQMX1IHUGY0GM2HJKKMX0OZQNFMLAX510AMFQPQ35V24MWQ2T4B">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">64</td>
+</tr>
+</table><br><a name="ID2YD2SOHA3MGIDIUR5KWMH3JSSGJV2RYVE33LQAFJRPO2NQB2RNLB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1060.432mil|Location2.X=1084.568mil|Location1.Y=3312.932mil|Location2.Y=3337.068mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1060.432mil|Location2.X=1084.568mil|Location1.Y=3312.932mil|Location2.Y=3337.068mil|Absolute=True">Short-Circuit Constraint: Between Pad U$1-39/A20(1070mil,3325mil) on Multi-Layer And Track (1070mil,3325mil)(1075mil,3325mil) on Top Location : [X = 1072.5mil][Y = 3325mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVIDCCJAKSXZJDEBZAPHWKHWMNOJPFJFMK5FFVAKUSEBZTPW4CQYE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=937mil|Location2.X=1403mil|Location1.Y=3692mil|Location2.Y=3958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=937mil|Location2.X=1403mil|Location1.Y=3692mil|Location2.Y=3958mil|Absolute=True">Un-Routed Net Constraint: Net VCC Between Pad U$1-3V3_2(970mil,3725mil) on Multi-Layer And Pad U$1-3V3(1370mil,3925mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=787.181mil|Location2.X=1003mil|Location1.Y=3592mil|Location2.Y=4097.819mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=787.181mil|Location2.X=1003mil|Location1.Y=3592mil|Location2.Y=4097.819mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad VR1-3(815mil,4070mil) on Multi-Layer And Pad U$1-GND3(970mil,3625mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=680mil|Location2.X=2283.74mil|Location1.Y=2500mil|Location2.Y=2840mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=680mil|Location2.X=2283.74mil|Location1.Y=2500mil|Location2.Y=2840mil|Absolute=True">Un-Routed Net Constraint: Net VCC Between Via (780mil,2600mil) from Top to Bottom And Track (2183.74mil,2740mil)(2190mil,2746.26mil) on Bottom </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEZANMQFMUZDPCEH2BZZROESDNDW5FUINP5GQAVIT4QNK4QXGCZHN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.74mil|Location2.X=589.407mil|Location1.Y=2647.206mil|Location2.Y=2654.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=581.74mil|Location2.X=589.407mil|Location1.Y=2647.206mil|Location2.Y=2654.873mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Arc (1132mil,2660mil) on Top Overlay And Pad J2-2(532.913mil,2660mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1274.375mil|Location2.X=1285.625mil|Location1.Y=2011.776mil|Location2.Y=2023.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1274.375mil|Location2.X=1285.625mil|Location1.Y=2011.776mil|Location2.Y=2023.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.433mil &lt; 10mil) Between Pad D2-1(1280mil,2050.118mil) on Multi-Layer And Track (1280mil,1989.764mil)(1280mil,2010.748mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.433mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1274.375mil|Location2.X=1285.625mil|Location1.Y=1776.98mil|Location2.Y=1788.23mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1274.375mil|Location2.X=1285.625mil|Location1.Y=1776.98mil|Location2.Y=1788.23mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.419mil &lt; 10mil) Between Pad D2-2(1280mil,1749.882mil) on Multi-Layer And Track (1280mil,1789.252mil)(1280mil,1810.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.419mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1668.666mil|Location2.X=1679.916mil|Location1.Y=1991.776mil|Location2.Y=2003.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1668.666mil|Location2.X=1679.916mil|Location1.Y=1991.776mil|Location2.Y=2003.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.433mil &lt; 10mil) Between Pad D3-1(1674.291mil,2030.118mil) on Multi-Layer And Track (1674.291mil,1969.764mil)(1674.291mil,1990.748mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.433mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1668.666mil|Location2.X=1679.916mil|Location1.Y=1756.98mil|Location2.Y=1768.23mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1668.666mil|Location2.X=1679.916mil|Location1.Y=1756.98mil|Location2.Y=1768.23mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.419mil &lt; 10mil) Between Pad D3-2(1674.291mil,1729.882mil) on Multi-Layer And Track (1674.291mil,1769.252mil)(1674.291mil,1790.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.419mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.375mil|Location2.X=2865.625mil|Location1.Y=3131.776mil|Location2.Y=3143.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.375mil|Location2.X=2865.625mil|Location1.Y=3131.776mil|Location2.Y=3143.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.433mil &lt; 10mil) Between Pad D4-1(2860mil,3170.118mil) on Multi-Layer And Track (2860mil,3109.764mil)(2860mil,3130.748mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.433mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.375mil|Location2.X=2865.625mil|Location1.Y=2896.98mil|Location2.Y=2908.23mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2854.375mil|Location2.X=2865.625mil|Location1.Y=2896.98mil|Location2.Y=2908.23mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.419mil &lt; 10mil) Between Pad D4-2(2860mil,2869.882mil) on Multi-Layer And Track (2860mil,2909.252mil)(2860mil,2930.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.419mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.375mil|Location2.X=3685.625mil|Location1.Y=3251.776mil|Location2.Y=3263.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.375mil|Location2.X=3685.625mil|Location1.Y=3251.776mil|Location2.Y=3263.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.433mil &lt; 10mil) Between Pad D5-1(3680mil,3290.118mil) on Multi-Layer And Track (3680mil,3229.764mil)(3680mil,3250.748mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.433mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.375mil|Location2.X=3685.625mil|Location1.Y=3016.98mil|Location2.Y=3028.23mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3674.375mil|Location2.X=3685.625mil|Location1.Y=3016.98mil|Location2.Y=3028.23mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.419mil &lt; 10mil) Between Pad D5-2(3680mil,2989.882mil) on Multi-Layer And Track (3680mil,3029.252mil)(3680mil,3050.236mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.419mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.375mil|Location2.X=3535.625mil|Location1.Y=1864.257mil|Location2.Y=1875.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3524.375mil|Location2.X=3535.625mil|Location1.Y=1864.257mil|Location2.Y=1875.507mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.906mil &lt; 10mil) Between Pad R13-1(3560mil,1902.835mil) on Multi-Layer And Track (3492.362mil,1862.992mil)(3689.213mil,1862.992mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.906mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHCBSVCQUWBKCHK4O0CGV4HJC0NYRBKPJLSTOKENRLWQHE4NTVMOE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1526.79mil|Location2.X=1538.04mil|Location1.Y=4134.844mil|Location2.Y=4146.094mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1526.79mil|Location2.X=1538.04mil|Location1.Y=4134.844mil|Location2.Y=4146.094mil|Absolute=True">Silk To Silk Clearance Constraint: (9.187mil &lt; 10mil) Between Arc (1639.37mil,4140mil) on Top Overlay And Text "+" (1485.512mil,4110.984mil) on Top Overlay Silk Text to Silk Clearance [9.187mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.557mil|Location2.X=2995.807mil|Location1.Y=1888.051mil|Location2.Y=1899.301mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2984.557mil|Location2.X=2995.807mil|Location1.Y=1888.051mil|Location2.Y=1899.301mil|Absolute=True">Silk To Silk Clearance Constraint: (9.115mil &lt; 10mil) Between Arc (2980mil,1903.858mil) on Top Overlay And Text "Q3" (2990.016mil,1830.01mil) on Top Overlay Silk Text to Silk Clearance [9.115mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.906mil|Location2.X=3525.156mil|Location1.Y=1507.42mil|Location2.Y=1518.67mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3513.906mil|Location2.X=3525.156mil|Location1.Y=1507.42mil|Location2.Y=1518.67mil|Absolute=True">Silk To Silk Clearance Constraint: (9.187mil &lt; 10mil) Between Arc (3520mil,1620mil) on Top Overlay And Text "+" (3549.016mil,1466.142mil) on Top Overlay Silk Text to Silk Clearance [9.187mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3509.976mil|Location2.X=3521.226mil|Location1.Y=1457.998mil|Location2.Y=1469.248mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3509.976mil|Location2.X=3521.226mil|Location1.Y=1457.998mil|Location2.Y=1469.248mil|Absolute=True">Silk To Silk Clearance Constraint: (3.375mil &lt; 10mil) Between Text "+" (3549.016mil,1466.142mil) on Top Overlay And Text "R8" (3410.016mil,1410.01mil) on Top Overlay Silk Text to Silk Clearance [3.375mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.664mil|Location2.X=3523.331mil|Location1.Y=1483.411mil|Location2.Y=1491.077mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.664mil|Location2.X=3523.331mil|Location1.Y=1483.411mil|Location2.Y=1491.077mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "+" (3549.016mil,1466.142mil) on Top Overlay And Track (3335.984mil,1487.244mil)(3584.016mil,1487.244mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.568mil|Location2.X=1246.235mil|Location1.Y=1946.15mil|Location2.Y=1953.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.568mil|Location2.X=1246.235mil|Location1.Y=1946.15mil|Location2.Y=1953.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D2" (1250.01mil,1949.984mil) on Top Overlay And Track (1242.402mil,1810.236mil)(1242.402mil,1989.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306.157mil|Location2.X=1313.824mil|Location1.Y=1941.049mil|Location2.Y=1948.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306.157mil|Location2.X=1313.824mil|Location1.Y=1941.049mil|Location2.Y=1948.715mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D2" (1250.01mil,1949.984mil) on Top Overlay And Track (1245.158mil,1944.882mil)(1314.842mil,1944.882mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1313.765mil|Location2.X=1321.432mil|Location1.Y=1946.15mil|Location2.Y=1953.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1313.765mil|Location2.X=1321.432mil|Location1.Y=1946.15mil|Location2.Y=1953.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D2" (1250.01mil,1949.984mil) on Top Overlay And Track (1317.598mil,1810.236mil)(1317.598mil,1989.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1637.195mil|Location2.X=1648.445mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1637.195mil|Location2.X=1648.445mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True">Silk To Silk Clearance Constraint: (4.38mil &lt; 10mil) Between Text "D3" (1650.01mil,1929.984mil) on Top Overlay And Track (1636.693mil,1790.236mil)(1636.693mil,1969.764mil) on Top Overlay Silk Text to Silk Clearance [4.38mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.301mil|Location2.X=1712.967mil|Location1.Y=1921.049mil|Location2.Y=1928.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.301mil|Location2.X=1712.967mil|Location1.Y=1921.049mil|Location2.Y=1928.715mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D3" (1650.01mil,1929.984mil) on Top Overlay And Track (1639.449mil,1924.882mil)(1709.134mil,1924.882mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1708.056mil|Location2.X=1715.723mil|Location1.Y=1926.15mil|Location2.Y=1933.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1708.056mil|Location2.X=1715.723mil|Location1.Y=1926.15mil|Location2.Y=1933.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D3" (1650.01mil,1929.984mil) on Top Overlay And Track (1711.89mil,1790.236mil)(1711.89mil,1969.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2818.568mil|Location2.X=2826.235mil|Location1.Y=3046.151mil|Location2.Y=3053.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2818.568mil|Location2.X=2826.235mil|Location1.Y=3046.151mil|Location2.Y=3053.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D4" (2830.01mil,3049.984mil) on Top Overlay And Track (2822.402mil,2930.236mil)(2822.402mil,3109.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2884.365mil|Location2.X=2895.615mil|Location1.Y=3052.339mil|Location2.Y=3063.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2884.365mil|Location2.X=2895.615mil|Location1.Y=3052.339mil|Location2.Y=3063.589mil|Absolute=True">Silk To Silk Clearance Constraint: (5.961mil &lt; 10mil) Between Text "D4" (2830.01mil,3049.984mil) on Top Overlay And Track (2825.157mil,3064.882mil)(2894.843mil,3064.882mil) on Top Overlay Silk Text to Silk Clearance [5.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2893.765mil|Location2.X=2901.432mil|Location1.Y=3046.151mil|Location2.Y=3053.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2893.765mil|Location2.X=2901.432mil|Location1.Y=3046.151mil|Location2.Y=3053.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D4" (2830.01mil,3049.984mil) on Top Overlay And Track (2897.598mil,2930.236mil)(2897.598mil,3109.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3638.568mil|Location2.X=3646.235mil|Location1.Y=3166.151mil|Location2.Y=3173.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3638.568mil|Location2.X=3646.235mil|Location1.Y=3166.151mil|Location2.Y=3173.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D5" (3650.01mil,3169.984mil) on Top Overlay And Track (3642.402mil,3050.236mil)(3642.402mil,3229.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3704.365mil|Location2.X=3715.615mil|Location1.Y=3172.339mil|Location2.Y=3183.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3704.365mil|Location2.X=3715.615mil|Location1.Y=3172.339mil|Location2.Y=3183.589mil|Absolute=True">Silk To Silk Clearance Constraint: (5.961mil &lt; 10mil) Between Text "D5" (3650.01mil,3169.984mil) on Top Overlay And Track (3645.157mil,3184.882mil)(3714.843mil,3184.882mil) on Top Overlay Silk Text to Silk Clearance [5.961mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.765mil|Location2.X=3721.432mil|Location1.Y=3166.151mil|Location2.Y=3173.817mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.765mil|Location2.X=3721.432mil|Location1.Y=3166.151mil|Location2.Y=3173.817mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "D5" (3650.01mil,3169.984mil) on Top Overlay And Track (3717.598mil,3050.236mil)(3717.598mil,3229.764mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=2709.351mil|Location2.Y=2720.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=2709.351mil|Location2.Y=2720.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R10" (3530.01mil,2714.976mil) on Top Overlay And Track (3512.756mil,2515.984mil)(3512.756mil,2764.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=2709.351mil|Location2.Y=2720.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=2709.351mil|Location2.Y=2720.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R10" (3530.01mil,2714.976mil) on Top Overlay And Track (3607.244mil,2515.984mil)(3607.244mil,2764.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3635.226mil|Location2.X=3646.476mil|Location1.Y=2259.354mil|Location2.Y=2270.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3635.226mil|Location2.X=3646.476mil|Location1.Y=2259.354mil|Location2.Y=2270.604mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R11" (3650.01mil,2264.979mil) on Top Overlay And Track (3632.756mil,2075.984mil)(3632.756mil,2324.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.524mil|Location2.X=3724.774mil|Location1.Y=2259.354mil|Location2.Y=2270.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3713.524mil|Location2.X=3724.774mil|Location1.Y=2259.354mil|Location2.Y=2270.604mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R11" (3650.01mil,2264.979mil) on Top Overlay And Track (3727.244mil,2075.984mil)(3727.244mil,2324.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2935.226mil|Location2.X=2946.476mil|Location1.Y=2429.351mil|Location2.Y=2440.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2935.226mil|Location2.X=2946.476mil|Location1.Y=2429.351mil|Location2.Y=2440.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R12" (2950.01mil,2434.976mil) on Top Overlay And Track (2932.756mil,2235.984mil)(2932.756mil,2484.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3013.524mil|Location2.X=3024.774mil|Location1.Y=2429.351mil|Location2.Y=2440.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3013.524mil|Location2.X=3024.774mil|Location1.Y=2429.351mil|Location2.Y=2440.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R12" (2950.01mil,2434.976mil) on Top Overlay And Track (3027.244mil,2235.984mil)(3027.244mil,2484.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=2149.351mil|Location2.Y=2160.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=2149.351mil|Location2.Y=2160.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R13" (3530.01mil,2154.976mil) on Top Overlay And Track (3512.756mil,1955.984mil)(3512.756mil,2204.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=2149.351mil|Location2.Y=2160.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=2149.351mil|Location2.Y=2160.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R13" (3530.01mil,2154.976mil) on Top Overlay And Track (3607.244mil,1955.984mil)(3607.244mil,2204.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1355.226mil|Location2.X=1366.476mil|Location1.Y=1949.351mil|Location2.Y=1960.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1355.226mil|Location2.X=1366.476mil|Location1.Y=1949.351mil|Location2.Y=1960.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R14" (1370.01mil,1954.976mil) on Top Overlay And Track (1352.756mil,1755.984mil)(1352.756mil,2004.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1433.524mil|Location2.X=1444.774mil|Location1.Y=1949.351mil|Location2.Y=1960.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1433.524mil|Location2.X=1444.774mil|Location1.Y=1949.351mil|Location2.Y=1960.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R14" (1370.01mil,1954.976mil) on Top Overlay And Track (1447.244mil,1755.984mil)(1447.244mil,2004.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2935.226mil|Location2.X=2946.476mil|Location1.Y=3089.351mil|Location2.Y=3100.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2935.226mil|Location2.X=2946.476mil|Location1.Y=3089.351mil|Location2.Y=3100.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R15" (2950.01mil,3094.976mil) on Top Overlay And Track (2932.756mil,2895.984mil)(2932.756mil,3144.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3013.524mil|Location2.X=3024.774mil|Location1.Y=3089.351mil|Location2.Y=3100.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3013.524mil|Location2.X=3024.774mil|Location1.Y=3089.351mil|Location2.Y=3100.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R15" (2950.01mil,3094.976mil) on Top Overlay And Track (3027.244mil,2895.984mil)(3027.244mil,3144.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=3189.351mil|Location2.Y=3200.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.226mil|Location2.X=3526.476mil|Location1.Y=3189.351mil|Location2.Y=3200.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R16" (3530.01mil,3194.976mil) on Top Overlay And Track (3512.756mil,2995.984mil)(3512.756mil,3244.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=3189.351mil|Location2.Y=3200.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3593.524mil|Location2.X=3604.774mil|Location1.Y=3189.351mil|Location2.Y=3200.601mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R16" (3530.01mil,3194.976mil) on Top Overlay And Track (3607.244mil,2995.984mil)(3607.244mil,3244.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2615.226mil|Location2.X=2626.476mil|Location1.Y=2964.359mil|Location2.Y=2975.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2615.226mil|Location2.X=2626.476mil|Location1.Y=2964.359mil|Location2.Y=2975.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R2" (2630.01mil,2969.984mil) on Top Overlay And Track (2612.756mil,2775.984mil)(2612.756mil,3024.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2693.524mil|Location2.X=2704.774mil|Location1.Y=2964.359mil|Location2.Y=2975.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2693.524mil|Location2.X=2704.774mil|Location1.Y=2964.359mil|Location2.Y=2975.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R2" (2630.01mil,2969.984mil) on Top Overlay And Track (2707.244mil,2775.984mil)(2707.244mil,3024.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2895.226mil|Location2.X=2906.476mil|Location1.Y=3884.359mil|Location2.Y=3895.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2895.226mil|Location2.X=2906.476mil|Location1.Y=3884.359mil|Location2.Y=3895.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R3" (2910.01mil,3889.984mil) on Top Overlay And Track (2892.756mil,3715.984mil)(2892.756mil,3964.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.524mil|Location2.X=2984.774mil|Location1.Y=3884.359mil|Location2.Y=3895.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2973.524mil|Location2.X=2984.774mil|Location1.Y=3884.359mil|Location2.Y=3895.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R3" (2910.01mil,3889.984mil) on Top Overlay And Track (2987.244mil,3715.984mil)(2987.244mil,3964.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.226mil|Location2.X=1526.476mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.226mil|Location2.X=1526.476mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R4" (1530.01mil,1929.984mil) on Top Overlay And Track (1512.756mil,1755.984mil)(1512.756mil,2004.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.524mil|Location2.X=1604.774mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.524mil|Location2.X=1604.774mil|Location1.Y=1924.359mil|Location2.Y=1935.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R4" (1530.01mil,1929.984mil) on Top Overlay And Track (1607.244mil,1755.984mil)(1607.244mil,2004.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.226mil|Location2.X=3086.476mil|Location1.Y=3684.359mil|Location2.Y=3695.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3075.226mil|Location2.X=3086.476mil|Location1.Y=3684.359mil|Location2.Y=3695.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R7" (3090.01mil,3689.984mil) on Top Overlay And Track (3072.756mil,3513.15mil)(3072.756mil,3761.181mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3153.524mil|Location2.X=3164.774mil|Location1.Y=3684.359mil|Location2.Y=3695.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3153.524mil|Location2.X=3164.774mil|Location1.Y=3684.359mil|Location2.Y=3695.609mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R7" (3090.01mil,3689.984mil) on Top Overlay And Track (3167.244mil,3513.15mil)(3167.244mil,3761.181mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3404.391mil|Location2.X=3415.641mil|Location1.Y=1395.226mil|Location2.Y=1406.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3404.391mil|Location2.X=3415.641mil|Location1.Y=1395.226mil|Location2.Y=1406.476mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R8" (3410.016mil,1410.01mil) on Top Overlay And Track (3335.984mil,1392.756mil)(3584.016mil,1392.756mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3404.391mil|Location2.X=3415.641mil|Location1.Y=1473.524mil|Location2.Y=1484.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3404.391mil|Location2.X=3415.641mil|Location1.Y=1473.524mil|Location2.Y=1484.774mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R8" (3410.016mil,1410.01mil) on Top Overlay And Track (3335.984mil,1487.244mil)(3584.016mil,1487.244mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3755.226mil|Location2.X=3766.476mil|Location1.Y=2245.566mil|Location2.Y=2256.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3755.226mil|Location2.X=3766.476mil|Location1.Y=2245.566mil|Location2.Y=2256.816mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R9" (3770.01mil,2251.191mil) on Top Overlay And Track (3752.756mil,2075.984mil)(3752.756mil,2324.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.524mil|Location2.X=3844.774mil|Location1.Y=2245.566mil|Location2.Y=2256.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.524mil|Location2.X=3844.774mil|Location1.Y=2245.566mil|Location2.Y=2256.816mil|Absolute=True">Silk To Silk Clearance Constraint: (8.317mil &lt; 10mil) Between Text "R9" (3770.01mil,2251.191mil) on Top Overlay And Track (3847.244mil,2075.984mil)(3847.244mil,2324.016mil) on Top Overlay Silk Text to Silk Clearance [8.317mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDE51WVFQSAE3OIGFJDCVFSS50ZGPL3LCVFHSX1KKFUGYQCETYP21G"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5858.367mil|Location2.X=5866.033mil|Location1.Y=433.967mil|Location2.Y=441.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5858.367mil|Location2.X=5866.033mil|Location1.Y=433.967mil|Location2.Y=441.633mil|Absolute=True">Board Outline Clearance(Cutout Edge): (Collision &lt; 10mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad Free-MH1(5862.2mil,437.8mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=464.667mil|Location2.X=472.333mil|Location1.Y=433.967mil|Location2.Y=441.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=464.667mil|Location2.X=472.333mil|Location1.Y=433.967mil|Location2.Y=441.633mil|Absolute=True">Board Outline Clearance(Cutout Edge): (Collision &lt; 10mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad Free-MH2(468.5mil,437.8mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=465.265mil|Location2.X=472.932mil|Location1.Y=4252.163mil|Location2.Y=4259.829mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=465.265mil|Location2.X=472.932mil|Location1.Y=4252.163mil|Location2.Y=4259.829mil|Absolute=True">Board Outline Clearance(Cutout Edge): (Collision &lt; 10mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad Free-MH3(470mil,4255mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5858.367mil|Location2.X=5866.033mil|Location1.Y=4252.857mil|Location2.Y=4260.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5858.367mil|Location2.X=5866.033mil|Location1.Y=4252.857mil|Location2.Y=4260.523mil|Absolute=True">Board Outline Clearance(Cutout Edge): (Collision &lt; 10mil) Between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer And Pad Free-MH4(5862.2mil,4256.69mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1144.205mil|Location2.X=1155.455mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1144.205mil|Location2.X=1155.455mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.827mil &lt; 10mil) Between Board Edge And Track (1149.83mil,309.764mil)(1149.83mil,579.857mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=624.533mil|Location2.X=635.783mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=624.533mil|Location2.X=635.783mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.827mil &lt; 10mil) Between Board Edge And Track (630.158mil,309.764mil)(1149.842mil,309.764mil) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=624.533mil|Location2.X=635.783mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Jack\Documents\Projects\PerformanceLogger\Imported Performance Logger.PrjPcb\Performance Logger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=624.533mil|Location2.X=635.783mil|Location1.Y=297.288mil|Location2.Y=308.538mil|Absolute=True">Board Outline Clearance(Outline Edge): (5.827mil &lt; 10mil) Between Board Edge And Track (630.158mil,309.764mil)(630.158mil,579.857mil) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Performance Logger.PrjPcb]
+   Generated File[Performance Logger.TXT]
+   Generated File[Performance Logger.LDP]
+   Generated File[Performance Logger.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 3:13:01 AM On 8/3/2021

@@ -1,0 +1,53 @@
+Change Component DesignItemId : Designator=FUCKINGBIGLCD Old DesignItemId=BIIIGGG_FOOTPRINT New DesignItemId=BIIIGGG_DEVICE
+Change Component Comment : Designator=FUCKINGBIGLCD Old Comment= New Comment=BIIIGGG_DEVICE
+Change Component Comment : Designator=U$1 Old Comment= New Comment=TEENSY_3.5/3.6
+Change Component Library : Designator=FUCKINGBIGLCD Old Library= New Library=Biiiggg LCD.IntLib
+Change Component Library : Designator=U$1 Old Library= New Library=Teensy356.IntLib
+Change component parameters: Designator = "FUCKINGBIGLCD" ("FUCKINGBIGLCD"); Footprint = "BIIIGGG_FOOTPRINT"; UniqueID = "\GKBVGVMR" ("GKBVGVMR")
+Change component parameters (AddParameter): Name = "DeviceName"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "DeviceSetName"; Value = "BIIIGGG_DEVICE"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "GateName_1"; Value = "G$1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LibraryName"; Value = "Biiiggg LCD"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SymbolName_1"; Value = "BIIIGGG_SYMBOL"; VariantName = "[No Variations]"
+Change component parameters: Designator = "U$1" ("U$1"); Footprint = "TEENSY_3.5/3.6"; UniqueID = "\NWVKRPVO" ("NWVKRPVO")
+Change component parameters (AddParameter): Name = "DeviceName"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "DeviceSetName"; Value = "TEENSY_3.5/3.6"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "GateName_1"; Value = "G$1"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LibraryName"; Value = "Teensy356"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SymbolName_1"; Value = "TEENSY_3.5/3.6"; VariantName = "[No Variations]"
+Added Component: Designator=J1(106_1)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "106"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/106/keystone-electronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://docs-emea.rs-online.com/webdocs/002b/0900766b8002b5fd.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Keystone Electronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "106"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "534-106"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Keystone-Electronics/106?qs=Q3RoVmURDolnMuconA2vXg%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=VR1(T73YE103KT20)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "T73YE103KT20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/t73ye103kt20/vishay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.mouser.com/datasheet/2/427/t73-239983.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "4.7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Vishay"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "T73YE103KT20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "72-T70YE-10K"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Vishay-Sfernice/T73YE103KT20?qs=LCMWAU1DZczcFWP7UOhLsQ%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=FUCKINGBIGLCD-P1
+Added Pin To Net: NetName=GND Pin=FUCKINGBIGLCD-P2
+Added Pin To Net: NetName=GND Pin=J1-1
+Added Pin To Net: NetName=GND Pin=U$1-GND3
+Added Pin To Net: NetName=GND Pin=VR1-3
+Added Net: Name=GND
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P4 Pin=FUCKINGBIGLCD-P4
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P4 Pin=VR1-2
+Added Net: Name=NetFUCKINGBIGLCD_P4
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P19 Pin=FUCKINGBIGLCD-P19
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P19 Pin=VR1-1
+Added Net: Name=NetFUCKINGBIGLCD_P19
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=U$1-VBAT
+Added Net: Name=NetJ1_2
+Added Pin To Net: NetName=VCC Pin=FUCKINGBIGLCD-P3
+Added Net: Name=VCC
+Added Class: Name=Performance Logger
+Added Room: Name=Performance Logger

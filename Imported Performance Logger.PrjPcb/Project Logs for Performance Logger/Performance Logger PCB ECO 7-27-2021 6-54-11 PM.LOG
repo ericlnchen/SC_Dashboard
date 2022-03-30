@@ -1,0 +1,57 @@
+Added Component: Designator=IC?(DIP781W56P254L950H533Q8N)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "MCP2562FD-E/P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/mcp2562fd-ep/microchip-technology"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://componentsearchengine.com/Datasheets/2/MCP2562FD-E_P.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "5.334mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Microchip"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "MCP2562FD-E/P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "579-MCP2562FD-E/P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Microchip-Technology/MCP2562FD-E-P?qs=YlpJWyuQ3PMgzspdOlrnPg%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=J?(1-963539-1)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "1-963539-1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/1-963539-1/te-connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://componentsearchengine.com/Datasheets/2/1-963539-1.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "1-963539-1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "571-1-963539-1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.com/Search/Refine.aspx?Keyword=571-1-963539-1"; VariantName = "[No Variations]"
+Added Component: Designator=J?(615006141121)
+Add component (AddParameter): Name = "Compliance"; Value = "Leadfree/RoHS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mOhm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://katalog.we-online.com/em/datasheet/615006141121.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Entrance"; Value = "Horizontal"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.we-online.de"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "THT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40to85degC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "615006141121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tray"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "615006141121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pin Number"; Value = "6P6C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Port"; Value = "1x1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "WurthElektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rated Current"; Value = "1.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Withstanding Voltage"; Value = "1000VAC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Working Voltage"; Value = "120VAC"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=IC?-2
+Added Pin To Net: NetName=+12 Pin=IC?-3
+Added Pin To Net: NetName=VCC Pin=IC?-5
+Added Pin To Net: NetName=GND Pin=J?-3
+Added Pin To Net: NetName=VCC Pin=J?-4
+Added Pin To Net: NetName=GND Pin=U?-8
+Added Pin To Net: NetName=GND Pin=U?-19
+Added Pin To Net: NetName=+5 Pin=U?-20
+Added Pin To Net: NetName=NetIC?_1 Pin=IC?-1
+Added Pin To Net: NetName=NetIC?_1 Pin=IC?-4
+Added Pin To Net: NetName=NetIC?_1 Pin=IC?-6
+Added Pin To Net: NetName=NetIC?_1 Pin=IC?-7
+Added Net: Name=NetIC?_1
+Added Pin To Net: NetName=NetJ?_2 Pin=J?-2
+Added Pin To Net: NetName=NetJ?_2 Pin=U$1-18/A4/SDA
+Added Net: Name=NetJ?_2
+Added Pin To Net: NetName=NetJ?_5 Pin=J?-5
+Added Pin To Net: NetName=NetJ?_5 Pin=U$1-19/A5/SCL
+Added Net: Name=NetJ?_5
+Added Member To Class: ClassName=Performance Logger Member=Component IC? MCP2562FD-E_P
+Added Member To Class: ClassName=Performance Logger Member=Component J? 1-963539-1
+Added Member To Class: ClassName=Performance Logger Member=Component U? LM7805CT

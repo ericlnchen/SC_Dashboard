@@ -1,0 +1,4 @@
+Change Component DesignItemId : Designator=IC2 Old DesignItemId=SignalBufferV1-3 New DesignItemId=SignalBufferV1-4
+Change Component Footprint: Designator=IC2 Old Footprint=DIP18 New Footprint=DIP18
+Change Managed Component Library Link : Designator=IC2 Old VaultGUID=2F328B86-E92A-46B9-BAEF-B8C5305B68F1 New VaultGUID=2F328B86-E92A-46B9-BAEF-B8C5305B68F1 Old ItemGUID=64ad2318-b9a2-4dc1-8dc0-1288f6052f7f New ItemGUID=64ad2318-b9a2-4dc1-8dc0-1288f6052f7f Old RevisionGUID=8277f119-e18a-448c-8377-e090d0d202f7 New RevisionGUID=1a1e69bb-88b2-44ee-9794-e893d4966529
+Added Room: Name=Performance Logger

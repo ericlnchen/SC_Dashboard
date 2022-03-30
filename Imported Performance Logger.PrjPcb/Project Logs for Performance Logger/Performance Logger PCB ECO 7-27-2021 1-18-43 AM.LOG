@@ -1,0 +1,20 @@
+Added Component: Designator=J?(615004141121)
+Add component (AddParameter): Name = "Compliance"; Value = "Leadfree/RoHS"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mOhm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://katalog.we-online.com/em/datasheet/615004141121.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Entrance"; Value = "Horizontal"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.we-online.de"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "THT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40to85degC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "615004141121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tray"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "615004141121"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pin Number"; Value = "6P4C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Port"; Value = "1x1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "WurthElektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rated Current"; Value = "1.5A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Withstanding Voltage"; Value = "1000VAC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Working Voltage"; Value = "120VAC"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Performance Logger Member=Component J? 615004141121
+Added Member To Class: ClassName=Performance Logger Member=Component U? LM7805CT

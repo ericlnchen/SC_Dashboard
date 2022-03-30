@@ -1,0 +1,44 @@
+Added Component: Designator=U?(FAIR-TO-220-3)
+Add component (AddParameter): Name = "Accuracy"; Value = "±4%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Category"; Value = "LinearRegulator"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://datasheet.ciiva.com/26904/lm7805ct-26904988.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Aug-12"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Line Regulation"; Value = "100mV"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Load Regulation"; Value = "100mV"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "FairchildSemiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "https://www.fairchildsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Input Voltage"; Value = "35V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Output Current"; Value = "2.2(Typ)A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Quiescent Current"; Value = "8mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Outputs"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-40to125degC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Type"; Value = "Fixed"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Output Voltage"; Value = "5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "3TO-220AB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "3-Pin Through Hole Device, Body 10 x 4.5 mm, Pitch 2.54 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "TO-220"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package URL"; Value = "https://www.fairchildsemi.com/package-drawings/TO/TO220B03.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Rail/Tube"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Polarity"; Value = "Positive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rad Hard"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Linear"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Typical Dropout Voltage @ Current"; Value = "2@1AV"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=FUCKINGBIGLCD-P21
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P9 Pin=U$1-24
+Added Pin To Net: NetName=GND Pin=U?-2
+Added Pin To Net: NetName=+5 Pin=U$1-VIN
+Added Pin To Net: NetName=+5 Pin=U?-3
+Added Net: Name=+5
+Added Pin To Net: NetName=+12 Pin=U?-1
+Added Net: Name=+12
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P5 Pin=FUCKINGBIGLCD-P5
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P5 Pin=U$1-27
+Added Net: Name=NetFUCKINGBIGLCD_P5
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P7 Pin=FUCKINGBIGLCD-P7
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P7 Pin=U$1-26
+Added Net: Name=NetFUCKINGBIGLCD_P7
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P8 Pin=FUCKINGBIGLCD-P8
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P8 Pin=U$1-25
+Added Net: Name=NetFUCKINGBIGLCD_P8
+Added Member To Class: ClassName=Performance Logger Member=Component U? LM7805CT

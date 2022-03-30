@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=GND Pin=J3-20
+Removed Pin From Net: NetName=GND Pin=J3-25
+Removed Pin From Net: NetName=GND Pin=J3-26
+Added Pin To Net: NetName=NetIC1_18 Pin=J3-20
+Added Pin To Net: NetName=NetIC1_18 Pin=J3-25
+Added Pin To Net: NetName=NetIC1_18 Pin=J3-26
+Added Member To Class: ClassName=Performance Logger Member=Component IC1 SignalBufferV1
+Added Member To Class: ClassName=Performance Logger Member=Component J2 106
+Added Member To Class: ClassName=Performance Logger Member=Component R1 MFR-25FBF52-1K

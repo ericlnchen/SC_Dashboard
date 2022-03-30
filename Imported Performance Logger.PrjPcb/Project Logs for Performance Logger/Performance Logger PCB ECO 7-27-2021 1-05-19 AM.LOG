@@ -1,0 +1,7 @@
+Added Component: Designator=U?(SPDIP300-SP28)
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "revE, May-2008"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "28-Lead Skinny Plastic Dual In-Line (SP) - 300 mil Body [SPDIP]"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "SPDIP300-SP28"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "revBB, Aug-2009"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=U$1-3V3
+Added Member To Class: ClassName=Performance Logger Member=Component U? PIC18F2620-I/SP

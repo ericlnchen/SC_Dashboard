@@ -1,0 +1,164 @@
+Removed Pin From Net: NetName=+12 Pin=U?-1
+Removed Pin From Net: NetName=+5 Pin=U?-20
+Change Component Designator: OldDesignator=IC? NewDesignator=IC1
+Change Component Designator: OldDesignator=J? NewDesignator=J2
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Added Component: Designator=J3(1859042)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "185904-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/185904-2/te-connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=185904&DocType=Customer+Drawing&DocLang=English&DocFormat=pdf&PartCntxt=1-185904-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "17mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "TE Connectivity"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "185904-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "571-185904-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/TE-Connectivity-AMP/185904-2?qs=UMrTGIqlm7mWBHkoAKrGLw%3D%3D"; VariantName = "[No Variations]"
+Added Component: Designator=Q1(ONSC-TO-92-3-29-11)
+Add component (AddParameter): Name = "Brand"; Value = "ONSemiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Collector- Base Voltage VCBO"; Value = "60V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Collector- Emitter Voltage VCEO Max"; Value = "40V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Collector-Emitter Saturation Voltage"; Value = "0.3V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Configuration"; Value = "Single"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://datasheet.ciiva.com/4725/2n3903-d-285841-4725808.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Rev. 8, 08/2012"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DC Collector/Base Gain hfe Min"; Value = "60"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Emitter- Base Voltage VEBO"; Value = "6V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Pack Quantity"; Value = "5000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gain Bandwidth Product fT"; Value = "270MHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "ONSemiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.onsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum DC Collector Current"; Value = "0.2A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Operating Temperature"; Value = "+150C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Maximum Power Dissipation"; Value = "625mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Operating Temperature"; Value = "-65C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Style"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "ThroughHole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "TO-92-3(TO-226)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "3-Pin Transistor Outline, Body 4.825 x 3.685 mm, Pitch 1.27 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "TO-92-3-29-11"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Product Category"; Value = "BipolarTransistors-BJT"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "Details"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Transistor Polarity"; Value = "NPN"; VariantName = "[No Variations]"
+Added Component: Designator=Q2(ONSC-TO-92-3-29-11)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.onsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.onsemi.com/pub_link/Collateral/BC337-D.PDF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "Package Specification"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.onsemi.cn/pub_link/Collateral/2N6426-D.PDF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Rev. 8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "IC Continuous (A)"; Value = "0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "On Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Note1"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "3-Pin Transistor Outline, Body 4.825 x 3.685 mm, Pitch 1.27 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "TO-92-3-29-11_AM_SL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "Rev. AM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packing"; Value = "Bulk Box"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "BC337"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Polarity"; Value = "NPN"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "FALSE"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RESA60-630X240)
+Add component (AddParameter): Name = "Case\Package"; Value = "Axial"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer URL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.yageo.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.yageo.com/documents/recent/Yageo%20LR_MFR_2013.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Apr-13"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Length"; Value = "0.248 inch"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "155 degC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-55 degC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Quantity"; Value = "200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "2-Pin Axial Lead, Dia 2.4 mm, Body Length 6.3 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "MFR-25"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power Rating"; Value = "250 mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Resistance"; Value = "10 kohm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHSCompliant"; Value = "true"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "250 V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=J3-1
+Added Pin To Net: NetName=+5 Pin=J3-7
+Added Pin To Net: NetName=GND Pin=J3-14
+Added Pin To Net: NetName=GND Pin=J3-20
+Added Pin To Net: NetName=GND Pin=J3-25
+Added Pin To Net: NetName=GND Pin=J3-26
+Added Pin To Net: NetName=GND Pin=Q2-3
+Added Pin To Net: NetName=VCC Pin=U2-20
+Change Net Name : Old Net Name=NetJ?_2 New Net Name=NetJ2_2
+Change Net Name : Old Net Name=NetJ?_5 New Net Name=NetJ2_5
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P20 Pin=FUCKINGBIGLCD-P20
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P20 Pin=Q2-1
+Added Net: Name=NetFUCKINGBIGLCD_P20
+Added Pin To Net: NetName=NetIC1_1 Pin=IC1-1
+Added Pin To Net: NetName=NetIC1_1 Pin=U$1-3/CANTX
+Added Net: Name=NetIC1_1
+Added Pin To Net: NetName=NetIC1_4 Pin=IC1-4
+Added Pin To Net: NetName=NetIC1_4 Pin=U$1-4/CANRX
+Added Net: Name=NetIC1_4
+Added Pin To Net: NetName=NetIC1_6 Pin=IC1-6
+Added Pin To Net: NetName=NetIC1_6 Pin=J3-17
+Added Net: Name=NetIC1_6
+Added Pin To Net: NetName=NetIC1_7 Pin=IC1-7
+Added Pin To Net: NetName=NetIC1_7 Pin=J3-4
+Added Net: Name=NetIC1_7
+Added Pin To Net: NetName=NetJ3_2 Pin=J3-2
+Added Net: Name=NetJ3_2
+Added Pin To Net: NetName=NetJ3_3 Pin=J3-3
+Added Net: Name=NetJ3_3
+Added Pin To Net: NetName=NetJ3_5 Pin=J3-5
+Added Net: Name=NetJ3_5
+Added Pin To Net: NetName=NetJ3_6 Pin=J3-6
+Added Net: Name=NetJ3_6
+Added Pin To Net: NetName=NetJ3_8 Pin=J3-8
+Added Net: Name=NetJ3_8
+Added Pin To Net: NetName=NetJ3_9 Pin=J3-9
+Added Net: Name=NetJ3_9
+Added Pin To Net: NetName=NetJ3_10 Pin=J3-10
+Added Net: Name=NetJ3_10
+Added Pin To Net: NetName=NetJ3_11 Pin=J3-11
+Added Net: Name=NetJ3_11
+Added Pin To Net: NetName=NetJ3_12 Pin=J3-12
+Added Net: Name=NetJ3_12
+Added Pin To Net: NetName=NetJ3_13 Pin=J3-13
+Added Net: Name=NetJ3_13
+Added Pin To Net: NetName=NetJ3_15 Pin=J3-15
+Added Net: Name=NetJ3_15
+Added Pin To Net: NetName=NetJ3_16 Pin=J3-16
+Added Net: Name=NetJ3_16
+Added Pin To Net: NetName=NetJ3_18 Pin=J3-18
+Added Net: Name=NetJ3_18
+Added Pin To Net: NetName=NetJ3_19 Pin=J3-19
+Added Net: Name=NetJ3_19
+Added Pin To Net: NetName=NetJ3_21 Pin=J3-21
+Added Net: Name=NetJ3_21
+Added Pin To Net: NetName=NetJ3_22 Pin=J3-22
+Added Net: Name=NetJ3_22
+Added Pin To Net: NetName=NetJ3_23 Pin=J3-23
+Added Net: Name=NetJ3_23
+Added Pin To Net: NetName=NetJ3_24 Pin=J3-24
+Added Net: Name=NetJ3_24
+Added Pin To Net: NetName=NetQ2_2 Pin=Q2-2
+Added Pin To Net: NetName=NetQ2_2 Pin=R1-1
+Added Net: Name=NetQ2_2
+Added Pin To Net: NetName=NetR1_2 Pin=R1-2
+Added Net: Name=NetR1_2
+Added Pin To Net: NetName=NetU$1_33/A14 Pin=U-2
+Added Pin To Net: NetName=NetU$1_33/A14 Pin=U$1-33/A14
+Added Net: Name=NetU$1_33/A14
+Added Pin To Net: NetName=NetU$1_34/A15 Pin=U-3
+Added Pin To Net: NetName=NetU$1_34/A15 Pin=U$1-34/A15
+Added Net: Name=NetU$1_34/A15
+Added Pin To Net: NetName=NetU$1_35/A16 Pin=U-4
+Added Pin To Net: NetName=NetU$1_35/A16 Pin=U$1-35/A16
+Added Net: Name=NetU$1_35/A16
+Added Pin To Net: NetName=NetU$1_36/A17 Pin=U-1
+Added Pin To Net: NetName=NetU$1_36/A17 Pin=U$1-36/A17
+Added Net: Name=NetU$1_36/A17
+Added Member To Class: ClassName=Performance Logger Member=Component J2 615006141121
+Added Member To Class: ClassName=Performance Logger Member=Component J3 185904-2
+Added Member To Class: ClassName=Performance Logger Member=Component Q1 2N3904
+Added Member To Class: ClassName=Performance Logger Member=Component Q2 BC337
+Added Member To Class: ClassName=Performance Logger Member=Component R1 1K
+Added Member To Class: ClassName=Performance Logger Member=Component U2 PIC18F2620-I/SP

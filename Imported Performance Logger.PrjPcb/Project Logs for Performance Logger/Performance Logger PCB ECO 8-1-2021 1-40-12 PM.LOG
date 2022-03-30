@@ -1,0 +1,15 @@
+Added Component: Designator=D1(DIOAD2855W130L835D505)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "SBR1045SD1-T"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/sbr1045sd1-t/diodes-incorporated"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://static6.arrow.com/aropdfconversion/e9ac78d29ec4e1440bcb8a4d828fb4ad9c4e4821/sbr1045sd1.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SBR1045SD1-T"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "621-SBR1045SD1-T"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Diodes-Incorporated/SBR1045SD1-T?qs=aXnpsjvrXd14ZHU8QjK7zA%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=D1-2
+Added Pin To Net: NetName=Net*1_1 Pin=*1-1
+Added Net: Name=Net*1_1
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=U1-1
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=Performance Logger Member=Component D1 SBR1045SD1-T

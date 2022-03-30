@@ -1,0 +1,34 @@
+Importer Log Report
+Project : Performance Logger.PrjPcb
+
+Section : Analyze Document - C:\Users\Jack\Documents\Projects\PerformanceLogger\Performance Logger.brd
+    Analyzing data of C:\Users\Jack\Documents\Projects\PerformanceLogger\Performance Logger.brd
+    Load settings
+    Load layers 146
+    Load board
+    Load Library "Teensy356"
+    Load Packages 1
+    Load Library "Biiiggg LCD"
+    Load Packages 1
+    ERROR: Unhandled typemfgpreviewcolors
+EndSection
+
+Section : Analyze Document - C:\Users\Jack\Documents\Projects\PerformanceLogger\Performance Logger.sch
+    Analyzing data of C:\Users\Jack\Documents\Projects\PerformanceLogger\Performance Logger.sch
+    Load settings
+    Load layers 146
+    Load schematic
+    Load Libraries 2
+    Load Library "Teensy356"
+    Load Packages 1
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Library "Biiiggg LCD"
+    Load Packages 1
+    Load Symbols 1
+    Load DeviceSets 1
+    Load Attributes 0
+    Load Classes 1
+    Load Parts 2
+    Load Sheets 1
+EndSection

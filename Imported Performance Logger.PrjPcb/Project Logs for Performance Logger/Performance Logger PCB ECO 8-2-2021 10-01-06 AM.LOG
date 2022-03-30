@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=NetIC1_12 Pin=U$1-33/A14
+Removed Pin From Net: NetName=NetIC1_11 Pin=U$1-34/A15
+Removed Pin From Net: NetName=NetIC1_10 Pin=U$1-35/A16
+Removed Pin From Net: NetName=NetIC1_14 Pin=U$1-38/A19
+Removed Pin From Net: NetName=NetIC1_13 Pin=U$1-39/A20
+Added Pin To Net: NetName=NetIC1_15 Pin=U$1-33/A14
+Added Pin To Net: NetName=NetIC1_14 Pin=U$1-34/A15
+Added Pin To Net: NetName=NetIC1_13 Pin=U$1-35/A16
+Added Pin To Net: NetName=NetIC1_12 Pin=U$1-36/A17
+Added Pin To Net: NetName=NetIC1_11 Pin=U$1-37/A18
+Added Pin To Net: NetName=NetIC1_10 Pin=U$1-38/A19

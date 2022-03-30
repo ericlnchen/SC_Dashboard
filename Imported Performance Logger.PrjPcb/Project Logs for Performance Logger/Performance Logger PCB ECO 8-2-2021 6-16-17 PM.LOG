@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=GND Pin=FUCKINGBIGLCD-P21
+Added Pin To Net: NetName=+5 Pin=FUCKINGBIGLCD-P20
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P21 Pin=FUCKINGBIGLCD-P21
+Added Pin To Net: NetName=NetFUCKINGBIGLCD_P21 Pin=Q2-1
+Added Net: Name=NetFUCKINGBIGLCD_P21

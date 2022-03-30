@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=GND Pin=U$1-UGND1
+Removed Pin From Net: NetName=GND Pin=U$1-UGND2
+Added Component: Designator=U(FCI_SLW4R-1C7LF)
+Add component (AddParameter): Name = "Digi-Key_Part_Number"; Value = "609-1928-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DigiKey-Purchase-URL"; Value = "https://snapeda.com/shop?store=DigiKey&id=31876"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Amphenol ICC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "SLW4R-1C7LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/SLW4R-1C7LF/Amphenol%20FCI/view-part/31876/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Performance Logger Member=Component U SLW4R-1C7LF

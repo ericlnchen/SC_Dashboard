@@ -1,0 +1,81 @@
+Removed Pin From Net: NetName=GND Pin=IC2-18
+Change Component Designator: OldDesignator=* NewDesignator=*1
+Change Component Designator: OldDesignator=IC1 NewDesignator=IC2
+Change Component Designator: OldDesignator=IC2 NewDesignator=IC1
+Change Component Designator: OldDesignator=J1 NewDesignator=J2
+Change Component Designator: OldDesignator=J2 NewDesignator=J1
+Change Component Designator: OldDesignator=R1 NewDesignator=R3
+Change Component Designator: OldDesignator=U NewDesignator=U3
+Added Component: Designator=R1(RESA60-630X240)
+Add component (AddParameter): Name = "Case/Package"; Value = "Axial"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Composition"; Value = "CarbonFilm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "http://www.yageo.com/documents/recent/Yageo%20LR_MFR_2013.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Apr-13"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Yageo"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.yageo.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "155°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "TH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "2-Pin Axial Lead, Dia 2.4 mm, Body Length 6.3 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Quantity"; Value = "200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "MFR-25"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power"; Value = "250mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = "True"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1k"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "250V"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RESA60-630X240)
+Add component (AddParameter): Name = "Case/Package"; Value = "Axial"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "http://www.yageo.com/documents/recent/Yageo%20LR_MFR_2013.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Apr-13"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Yageo"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.yageo.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "155°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "TH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "2-Pin Axial Lead, Dia 2.4 mm, Body Length 6.3 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Quantity"; Value = "200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "MFR-25"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power"; Value = "250mW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = "True"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "1%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10k"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "250V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=R1-2
+Added Pin To Net: NetName=GND Pin=R2-1
+Change Net Name : Old Net Name=Net*_7 New Net Name=Net*1_7
+Change Net Name : Old Net Name=NetIC1_1 New Net Name=NetIC2_1
+Change Net Name : Old Net Name=NetIC1_4 New Net Name=NetIC2_4
+Change Net Name : Old Net Name=NetIC1_6 New Net Name=NetIC2_6
+Change Net Name : Old Net Name=NetIC1_7 New Net Name=NetIC2_7
+Change Net Name : Old Net Name=NetIC2_2 New Net Name=NetIC1_2
+Change Net Name : Old Net Name=NetIC2_3 New Net Name=NetIC1_3
+Change Net Name : Old Net Name=NetIC2_4 New Net Name=NetIC1_4
+Change Net Name : Old Net Name=NetIC2_5 New Net Name=NetIC1_5
+Change Net Name : Old Net Name=NetIC2_6 New Net Name=NetIC1_6
+Change Net Name : Old Net Name=NetIC2_7 New Net Name=NetIC1_7
+Change Net Name : Old Net Name=NetIC2_8 New Net Name=NetIC1_8
+Change Net Name : Old Net Name=NetIC2_9 New Net Name=NetIC1_9
+Change Net Name : Old Net Name=NetJ1_2 New Net Name=NetJ2_2
+Change Net Name : Old Net Name=NetJ2_2 New Net Name=NetJ1_2
+Change Net Name : Old Net Name=NetJ2_5 New Net Name=NetJ1_5
+Change Net Name : Old Net Name=NetU$1_33/A14 New Net Name=NetU3_2
+Change Net Name : Old Net Name=NetU$1_34/A15 New Net Name=NetU3_3
+Change Net Name : Old Net Name=NetU$1_35/A16 New Net Name=NetU3_4
+Change Net Name : Old Net Name=NetU$1_36/A17 New Net Name=NetU3_1
+Added Pin To Net: NetName=NetIC1_18 Pin=IC1-18
+Added Pin To Net: NetName=NetIC1_18 Pin=R1-1
+Added Pin To Net: NetName=NetIC1_18 Pin=U$1-AGND
+Added Net: Name=NetIC1_18
+Added Pin To Net: NetName=NetIC2_8 Pin=IC2-8
+Added Pin To Net: NetName=NetIC2_8 Pin=R2-2
+Added Net: Name=NetIC2_8
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=NetR3_2 Pin=U$1-23/A9
+Added Net: Name=NetR3_2
+Added Member To Class: ClassName=Performance Logger Member=Component R2 MFR-25FBF52-10K
+Added Member To Class: ClassName=Performance Logger Member=Component R3 1K
