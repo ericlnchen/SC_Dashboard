@@ -2,25 +2,18 @@
 #include <string>
 #include <math.h>
 
+U8G2_T6963_240X128_F_8080 u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24); // Connect RD (orange) with +5V, FS0 and FS1 with GND
+
 int screenx = 240;
 int screeny = 128;
 int fontx = 12;
 int fonty = 15;
 
+Display::Display(){
 
-U8G2_T6963_240X128_F_8080 u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24); // Connect RD (orange) with +5V, FS0 and FS1 with GND
-TSPoint p;
-void modifyPointToScreen()
-{
-p.x =  map(p.x,100,944,0,240);
-p.y =  map(p.y,190,860,0,128);
-p.z = abs(map(p.z,900,300,0,255));
 }
-TouchScreen ts = TouchScreen(XP, YP, XM, YM , 730);
-enum screens {menu,settings,gps,naughtTo60Timer};
-screens currentScreen = settings;
 
-void initializeDisplay()
+void Display::initializeDisplay()
 {
     pinMode(backlightPin,OUTPUT);
     analogWrite(backlightPin,100);
@@ -30,82 +23,75 @@ void initializeDisplay()
     u8g2.setFont(u8g2_font_helvR12_tf);
     u8g2.drawStr(32,18,"Dash Booting");
     u8g2.sendBuffer();
-}
-
-void menuScreen()
-{
-    u8g2.clearBuffer();
-    u8g2.setFont(u8g2_font_VCR_OSD_mf); //u8g2_font_9x15B_mr
-    u8g2.drawStr(32,18,"Menu");
-    u8g2.drawLine(0,19,240,19);
-    ///u8g2.setFontMode(0); // shoulnt need to change this as it is the default
-    u8g2.setDrawColor(0); // set this to zero so that we get a black background against the font
-    u8g2.drawStr(0,40,"Device Settings");
-    u8g2.drawStr(0,60,"");
-    u8g2.drawStr(0,80,"Acceleration Tests");
-    
+    delay(3000);
+    drawBackground();
+    drawBoxGauge(0, 12000, 6000,10000);
+    drawGear('N');
     u8g2.sendBuffer();
-    u8g2.setDrawColor(1); // reset the draw color back to the default
 }
 
-void clearBox(int x0, int y0, int w, int h) {
+void Display::clearBox(int x0, int y0, int w, int h) {
 
     u8g2.setDrawColor(0);
     u8g2.drawBox(x0,y0,w,h);
     u8g2.setDrawColor(1);
 }
 
-void drawDarkBox(int x0, int y0, int w, int h) {
+void Display::drawDarkBox(int x0, int y0, int w, int h) {
     u8g2.setDrawColor(1);
     u8g2.drawBox(x0,y0,w,h);
     u8g2.setDrawColor(0);
 }
 
-void functioning_battery(const double value,const bool isFunc){
+void Display::drawBackground() {
+    int fontx = 12;
+    int x0 = screenx/2;
+    int y0 = screeny/2;
 
-    if(!isFunc){    // emergency battery voltage
-        drawDarkBox(53,55,52,32);
-        u8g2.setFont(u8g2_font_helvR08_tf);
-        u8g2.drawStr(2+53,screeny - 63,String("Battery").c_str());
-        u8g2.setFont(u8g2_font_VCR_OSD_mf);
-        u8g2.setFontMode(1);
-        int x0 = screenx/2;
-        int y0 = screeny/2;
-        if(value < 10){
-            u8g2.drawStr(x0-64 + fontx,y0+21,String(int(value)).c_str());
-        }
-        else{
-            u8g2.drawStr(x0-64,y0+21,String(int(value)).c_str());
-        }
-        int firstDecimal = int(value*10.0) % 10;
-        u8g2.drawStr(x0 - 35, y0+21,String(firstDecimal).c_str());
-        u8g2.drawStr(x0-64+fontx*2-fontx/4,y0+21,".");
-        u8g2.setFontMode(0);
-    }
-    else{   //  functioning battery voltage
-        clearBox(54,55,50,31);
-        u8g2.setFont(u8g2_font_helvR08_tf);
-        u8g2.drawStr(2+53,screeny - 63,String("Battery").c_str());
-        u8g2.setFont(u8g2_font_VCR_OSD_mf);
-        u8g2.setFontMode(1);
-        int x0 = screenx/2;
-        int y0 = screeny/2;
-        if(value < 10){
-            u8g2.drawStr(x0-64 + fontx,y0+21,String(int(value)).c_str());
-        }
-        else{
-            u8g2.drawStr(x0-64,y0+21,String(int(value)).c_str());
-        }
-        int firstDecimal = int(value*10.0) % 10;
-        u8g2.drawStr(x0 - 35, y0+21,String(firstDecimal).c_str());
-        u8g2.drawStr(x0-64+fontx*2-fontx/4,y0+21,".");
-        u8g2.setFontMode(0);
-    }
+    u8g2.setFont(u8g2_font_helvR08_tf);
+    u8g2.drawStr(x0 - 5,y0 + 43, "mph");
+
+    u8g2.drawFrame(x0 - 16,y0 + 7,40,40); // mph
+    u8g2.drawFrame(x0 - 16,y0 - 43,40,51); // gear
+    u8g2.drawFrame(0,0,screenx,22); // gauge
+    u8g2.drawLine(0,screeny - 74,104,screeny - 74); // left first horizontal line
+    u8g2.drawLine(0,screeny - 42,104,screeny - 42); // left second horizontal line
+    u8g2.drawLine(0,110,104,110); // left third horizontal line
+    u8g2.drawLine(140,110,240,110); // right bottom hozizontal line
+    u8g2.drawVLine(53,20,66); // left vertical line
+    u8g2.setFont(u8g2_font_logisoso16_tr);
+    u8g2.drawStr(147, 50, "RPM");
+
+    u8g2.setFont(u8g2_font_VCR_OSD_mf);
+    u8g2.drawStr(2 + fontx*4-5,109,":");
+
 }
 
-void functioning(const unsigned char value, const char diagnostic, const bool isFunc){
+void Display::functioning_battery(const double value,const bool isFunc){
 
-    if(diagnostic == cT){   //  functioning coolant temp
+    if(isFunc) clearBox(54,55,50,31);
+    else drawDarkBox(54,55,50,31);
+    u8g2.setFont(u8g2_font_helvR08_tf);
+    u8g2.drawStr(2+53,screeny - 63,String("Battery").c_str());
+    u8g2.setFont(u8g2_font_VCR_OSD_mf);
+    u8g2.setFontMode(1);
+    int x0 = screenx/2;
+    int y0 = screeny/2;
+    if(value < 10){
+        u8g2.drawStr(x0-64 + fontx,y0+21,String(int(value)).c_str());
+    }
+    else{
+        u8g2.drawStr(x0-64,y0+21,String(int(value)).c_str());
+    }
+    int firstDecimal = int(value*10.0) % 10;
+    u8g2.drawStr(x0 - 35, y0+21,String(firstDecimal).c_str());
+    u8g2.drawStr(x0-64+fontx*2-fontx/4,y0+21,".");
+    u8g2.setFontMode(0);
+}
+
+void Display::functioning(const unsigned char value, const char diagnostic, const bool isFunc){
+
+    if(diagnostic == cT){
         if(isFunc) clearBox(0,22,53,32);
         else drawDarkBox(0,22,53,32);
         u8g2.setFont(u8g2_font_helvR08_tf);
@@ -116,7 +102,7 @@ void functioning(const unsigned char value, const char diagnostic, const bool is
         int y0 = screeny-fonty;
         u8g2.drawStr(x0,y0 - 60, String(value).c_str());
     }
-    if(diagnostic == oT){   //  functioning oil temp
+    if(diagnostic == oT){
         if(isFunc) clearBox(0,55,53,31);
         else drawDarkBox(0,55,53,31);
         u8g2.setFont(u8g2_font_helvR08_tf);
@@ -127,7 +113,7 @@ void functioning(const unsigned char value, const char diagnostic, const bool is
         int y0 = screeny;
         u8g2.drawStr(x0,y0-43,String(value).c_str());
     }
-    if(diagnostic == oP){   //  functioning oil pressure
+    if(diagnostic == oP){
         if(isFunc) clearBox(54,22,50,32);
         else drawDarkBox(54,22,50,32);
         u8g2.setFont(u8g2_font_helvR08_tf);
@@ -146,32 +132,7 @@ void functioning(const unsigned char value, const char diagnostic, const bool is
     }
 }
 
-void drawBackground() {
-    int fontx = 12;
-    int x0 = screenx/2;
-    int y0 = screeny/2;
-
-    u8g2.setFont(u8g2_font_helvR08_tf);
-    u8g2.drawStr(x0 - 5,y0 + 43, String("mph").c_str());
-
-    u8g2.drawFrame(x0 - 16,y0 + 7,40,40); // mph
-    u8g2.drawFrame(x0 - 16,y0 - 43,40,51); // gear
-    u8g2.drawFrame(0,0,screenx,22); // gauge
-    u8g2.drawLine(0,screeny - 74,104,screeny - 74); // left first horizontal line
-    u8g2.drawLine(0,screeny - 42,104,screeny - 42); // left second horizontal line
-    u8g2.drawLine(0,110,104,110); // left third horizontal line
-    u8g2.drawLine(140,110,240,110); // right bottom hozizontal line
-    u8g2.drawVLine(53,20,66); // left vertical line
-    u8g2.setFont(u8g2_font_VCR_OSD_mf);
-
-    u8g2.drawStr(147, 50, "RPM");
-
-    // u8g2.drawStr(2 + fontx*5,109,":");
-    u8g2.drawStr(2 + fontx*2,109,":");
-
-}
-
-void drawGear(const char gear){
+void Display::drawGear(const char gear){
     int x0 = screenx/2;
     int y0 = screeny/2;
     clearBox(x0-9,y0-41,30,47);
@@ -179,7 +140,7 @@ void drawGear(const char gear){
     u8g2.drawStr(x0 - 10,y0 + 5,String(gear).c_str());
 }
 
-void drawMph(const unsigned char mph) {
+void Display::drawMph(const unsigned char mph) {
     int x0 = screenx/2;
     int y0 = screeny/2;
     clearBox(x0 - 11,y0 + 10,32,25);
@@ -192,37 +153,30 @@ void drawMph(const unsigned char mph) {
     u8g2.sendBuffer();
 }
 
-void drawLapTime(int *lapTime){
+void Display::drawLapTime(int *lapTime){
     u8g2.setFont(u8g2_font_VCR_OSD_mf);
 
-    for (int i=0;i<3;i++) {
-        clearBox(2+fontx*i*3,109 - fonty,fontx*2,fonty);
+    for (int i = 0; i < 1; ++i) {
+        clearBox(2+i*20+fontx+5,109 - fonty,fontx*2,fonty);
     }
 
     if (lapTime[0]<10) {
-        u8g2.drawStr(2 ,109,"0");
-        u8g2.drawStr(2 + fontx,109,String(lapTime[0]).c_str());
+        u8g2.drawStr(2 + fontx + 5,109,"0");
+        u8g2.drawStr(2 + 2*fontx + 5,109,String(lapTime[0]).c_str());
     }
     else {
-        u8g2.drawStr(2,109,String(lapTime[0]).c_str());
+        u8g2.drawStr(2 + fontx + 5,109,String(lapTime[0]).c_str());
     }
     if (lapTime[1]<10) {
-        u8g2.drawStr(2 + fontx*3,109,"0");
-        u8g2.drawStr(2 + fontx*4,109,String(lapTime[1]).c_str());
+        u8g2.drawStr(2 + fontx*5 - 5,109,"0");
+        u8g2.drawStr(2 + fontx*6 - 5,109,String(lapTime[1]).c_str());
     }
     else {
-        u8g2.drawStr(2+ fontx*3,109,String(lapTime[1]).c_str());
+        u8g2.drawStr(2+ fontx*5 - 5,109,String(lapTime[1]).c_str());
     }
-    // if (lapTime[2]<10) {
-    //     u8g2.drawStr(2 + fontx*6,109,"0");
-    //     u8g2.drawStr(2 + fontx*7,109,String(lapTime[2]).c_str());
-    // }
-    // else {
-    //     u8g2.drawStr(2+ fontx*6,109,String(lapTime[2]).c_str());
-    // }
 }
 
-void drawBoxGauge(const unsigned int current, const unsigned int max, const unsigned int cutoff, const unsigned int redLine) {
+void Display::drawBoxGauge(const unsigned int current, const unsigned int max, const unsigned int cutoff, const unsigned int redLine) {
     int padding = 1;
     int xStart = padding;
     int yStart = padding;
@@ -241,7 +195,7 @@ void drawBoxGauge(const unsigned int current, const unsigned int max, const unsi
     char buffer[6];
     if(current < 10000) snprintf(buffer,6," %.1lf", (double)current/1000);
     else snprintf(buffer,6,"%.1lf", (double)current/1000);
-    u8g2.drawStr(187, 50, buffer);
+    u8g2.drawStr(180, 50, buffer);
 
 
     // gauge calculation based on current rpm, how fast the bar moves, faster in the lower rpm and slower at high
@@ -284,10 +238,3 @@ void drawBoxGauge(const unsigned int current, const unsigned int max, const unsi
     }
     u8g2.sendBuffer();
 }
-
-// void displayGPSbootup()
-// {
-//     u8g2.setCursor(32,40);
-//     u8g2.print("gps not functional");
-
-// }
