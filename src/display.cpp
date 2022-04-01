@@ -1,27 +1,28 @@
 #include "display.h"
 #include <string>
 #include <math.h>
+#define YP A3  // must be an analog pin, use "An" notation!
+#define XM A8  // must be an analog pin, use "An" notation!
+#define YM A1  // can be a digital pin
+#define XP A2   // can be a digital pin
+#define MINPRESSURE 10
+#define MAXPRESSURE 1000
 
-U8G2_T6963_240X128_F_8080 u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24); // Connect RD (orange) with +5V, FS0 and FS1 with GND
-
-int screenx = 240;
-int screeny = 128;
-int fontx = 12;
-int fonty = 15;
-
-Display::Display(){
-
+Display::Display() :
+    u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24) // Connect RD (orange) with +5V, FS0 and FS1 with GND
+{
 }
+
 
 void Display::initializeDisplay()
 {
-    pinMode(backlightPin,OUTPUT);
-    analogWrite(backlightPin,100);
+    pinMode(23,OUTPUT);
+    analogWrite(23,100);
     u8g2.begin();
     u8g2.setContrast(255);
     u8g2.clearBuffer();
     u8g2.setFont(u8g2_font_helvR12_tf);
-    u8g2.drawStr(32,18,"Dash Booting");
+    u8g2.drawStr(32,18,"Driver Booting");
     u8g2.sendBuffer();
     delay(3000);
     drawBackground();

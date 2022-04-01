@@ -1,8 +1,6 @@
-#include "display.h"
+#include "debug_screen.h"
 #include "gps.h"
 #include "ACAN.h"
-#include <U8g2lib.h>
-
 unsigned long lastspeedUpdate;
 unsigned long lastRPMUpdate;
 unsigned long lastCTempUpdate;
@@ -56,10 +54,11 @@ void loop(Display& driver);
 
 
 int main(){
-  Display driver = Display();
-  setup(driver);
+  //Display driver = Display();
+  Debug_screen debug = Debug_screen();
+  setup(debug);
   while(true){
-    loop(driver);
+    loop(debug);
   }
 
   return 0;
@@ -111,84 +110,84 @@ void loop(Display& driver) {
     lastspeedUpdate = millis();
   }
 
-  if (millis()-lastLapTimeUpdate>=1000){
-    int seconds = millis()/1000;
-    // lapTime[2] = millis();
-    lapTime[1] = seconds%60;
-    lapTime[0] = (seconds/60)%60;
-    driver.drawLapTime(lapTime);
-    lastLapTimeUpdate = millis();
-  }
+  // if (millis()-lastLapTimeUpdate>=1000){
+  //   int seconds = millis()/1000;
+  //   // lapTime[2] = millis();
+  //   lapTime[1] = seconds%60;
+  //   lapTime[0] = (seconds/60)%60;
+  //   driver.drawLapTime(lapTime);
+  //   lastLapTimeUpdate = millis();
+  // }
 
-  if (millis()-lastoil_pressureUpdate>3000){
-    if(oil_pressure == 0){
-      oil_pressure = 90;
-    }
-    if(oil_pressure >= 90){
-      isWorking[3] = false;
-      driver.functioning(oil_pressure, oP, false);
-    }
-    else if(oil_pressure <= 30){
-      isWorking[3] = false;
-      driver.functioning(oil_pressure, oP, false);
-    }
-    else{
-      isWorking[3] = true;
-      driver.functioning(oil_pressure, oP, true);
-    }
-    --oil_pressure;
-    lastoil_pressureUpdate = millis();
-  }
+  // if (millis()-lastoil_pressureUpdate>3000){
+  //   if(oil_pressure == 0){
+  //     oil_pressure = 90;
+  //   }
+  //   if(oil_pressure >= 90){
+  //     isWorking[3] = false;
+  //     driver.functioning(oil_pressure, oP, false);
+  //   }
+  //   else if(oil_pressure <= 30){
+  //     isWorking[3] = false;
+  //     driver.functioning(oil_pressure, oP, false);
+  //   }
+  //   else{
+  //     isWorking[3] = true;
+  //     driver.functioning(oil_pressure, oP, true);
+  //   }
+  //   --oil_pressure;
+  //   lastoil_pressureUpdate = millis();
+  // }
 
-  if (millis()-lastVoltUpdate>1000){
-    voltage=voltage+.1;
-    if(voltage <= 0.0){
-      voltage = 12.0;
-    }
-    else if(voltage >= 14.5){
-      voltage = 10;
-    }
-    if(voltage <= 11.5){
-      isWorking[1] = false;
-      driver.functioning_battery(voltage, false);
-    }
-    else{
-      isWorking[1] = true;
-      driver.functioning_battery(voltage, true);
-    }
-    lastVoltUpdate = millis();
-  }
+  // if (millis()-lastVoltUpdate>1000){
+  //   voltage=voltage+.1;
+  //   if(voltage <= 0.0){
+  //     voltage = 12.0;
+  //   }
+  //   else if(voltage >= 14.5){
+  //     voltage = 10;
+  //   }
+  //   if(voltage <= 11.5){
+  //     isWorking[1] = false;
+  //     driver.functioning_battery(voltage, false);
+  //   }
+  //   else{
+  //     isWorking[1] = true;
+  //     driver.functioning_battery(voltage, true);
+  //   }
+  //   lastVoltUpdate = millis();
+  // }
 
-  if (millis()-lastCTempUpdate>4000){
-    if(coolant_temp == 0){
-      coolant_temp = 99;
-    }
-    if(coolant_temp >= 100){
-      isWorking[0] = false;
-      driver.functioning(coolant_temp, cT, false);
-    }
-    else{
-      isWorking[0] = true;
-      driver.functioning(coolant_temp, cT, true);
-    }
-     --coolant_temp;
-    lastCTempUpdate = millis();
-  }
+  // if (millis()-lastCTempUpdate>4000){
+  //   if(coolant_temp == 0){
+  //     coolant_temp = 99;
+  //   }
+  //   if(coolant_temp >= 100){
+  //     isWorking[0] = false;
+  //     driver.functioning(coolant_temp, cT, false);
+  //   }
+  //   else{
+  //     isWorking[0] = true;
+  //     driver.functioning(coolant_temp, cT, true);
+  //   }
+  //    --coolant_temp;
+  //   lastCTempUpdate = millis();
+  // }
 
-  if (millis()-lastOTempUpdate>4500){
-    if(oil_temp == 0){
-      oil_temp = 99;
-    }
-    if(oil_temp >= 100){
-      isWorking[2] = false;
-      driver.functioning(oil_temp, oT, false);
-    }
-    else{
-      isWorking[2] = true;
-      driver.functioning(oil_temp, oT, true);
-    }
-    --oil_temp;
-    lastOTempUpdate = millis();
-  }
+  // if (millis()-lastOTempUpdate>4500){
+  //   if(oil_temp == 0){
+  //     oil_temp = 99;
+  //   }
+  //   if(oil_temp >= 100){
+  //     isWorking[2] = false;
+  //     driver.functioning(oil_temp, oT, false);
+  //   }
+  //   else{
+  //     isWorking[2] = true;
+  //     driver.functioning(oil_temp, oT, true);
+  //   }
+  //   --oil_temp;
+  //   lastOTempUpdate = millis();
+  // }
 }
 
