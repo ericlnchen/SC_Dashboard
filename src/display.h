@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 
-enum diagnostics {oT,oP,cT,b};
+enum diagnostics {oT,oP,cT,b,h,f,fa,mc};
 
 class Display{
 public:
@@ -21,6 +21,5 @@ protected:
     int fonty = 15;
     void clearBox(int x0, int y0, int w, int h);
     void drawDarkBox(int x0, int y0, int w, int h);
-private:
     U8G2_T6963_240X128_F_8080 u8g2;
 };

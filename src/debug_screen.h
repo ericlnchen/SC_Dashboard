@@ -6,13 +6,14 @@ public:
     Debug_screen();
     void initializeDisplay();
     void drawBackground();
-    void drawLeftDiagnostics();
+    void drawLeftDiagnostics(char value, char diag, bool isFunc);
     void drawRightDiagnostics();
     void drawBoxGauge(const unsigned int current, const unsigned int max, const unsigned int cutoff, const unsigned int redLine);
     void functioning_battery(const double value, const bool isFunc);
 
 private:
-    U8G2_T6963_240X128_F_8080 u8g2;
+    int leftBoxHeight = 32;
+    int leftBoxLength = 53;
     double main_current;
     double h20_current;
     double fuel_current;

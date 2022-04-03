@@ -11,6 +11,8 @@ unsigned long lastLapTimeUpdate;
 unsigned long lapTimeStart;
 unsigned long lastGearUpdate;
 unsigned long lastTimeUpdate;
+unsigned long lastMainCurrentUpdate;
+unsigned long lastFuelCurrentUpdate;
 
 
 //----------------- CAN -----------------//
@@ -18,6 +20,7 @@ unsigned long lastTimeUpdate;
 //ID: 0x5F0
 unsigned int RPM = 0;
 unsigned char speed = 0;
+unsigned char throttle = 0;
 
 //ID: 0x5F1
 
@@ -47,11 +50,17 @@ int lapTime[3] = {0,0,0};
 double voltage = 11.4;
 char gears[6] = {'N','1','2','3','4','5'};
 bool isWorking[4] = {true,true,true,true}; // coolant, battery, oil temp, oil pressure in this order
+char main_c = 0;
 
 //  Function Prototypes
-void setup(Display& driver);
-void loop(Display& driver);
+void setup(Debug_screen& driver);
+void loop(Debug_screen& driver);
+static void handleMessage_0 (const CANMessage & frame);
 
+ACANSettings settings (500*1000); 
+const ACANPrimaryFilter primaryFilters [] = {
+    ACANPrimaryFilter (kData, kExtended, 0x01F0A000, handleMessage_0)// 0x01F0A000 0xF88A000
+};
 
 int main(){
   //Display driver = Display();
@@ -64,7 +73,18 @@ int main(){
   return 0;
 }
 
-void setup(Display& driver) {
+void setup(Debug_screen& driver) {
+  settings.mListenOnlyMode = true;
+  const uint32_t errorCode = ACAN::can0.begin (settings, primaryFilters, 12) ;
+  if (0 == errorCode) {
+    Serial.println ("can0 ok") ;
+  }
+  else{
+    Serial.print ("Error can0: ") ;
+    Serial.println (errorCode) ;
+  }
+  ACAN::can0.dispatchReceivedMessage();
+
   driver.initializeDisplay();
   Serial.begin(9600);
   Serial.println("test");
@@ -80,7 +100,7 @@ void setup(Display& driver) {
   lapTimeStart = millis();
 }
 
-void loop(Display& driver) {
+void loop(Debug_screen& driver) {
   
   if(RPM == 11500){
     if(gear == 5){
@@ -108,6 +128,16 @@ void loop(Display& driver) {
     }
     driver.drawMph(speed);
     lastspeedUpdate = millis();
+  }
+
+  if(millis()-lastMainCurrentUpdate > 2000){
+    driver.drawLeftDiagnostics(0, mc, true);
+    lastMainCurrentUpdate = millis();
+  }
+  
+  if(millis()-lastFuelCurrentUpdate > 2000){
+    driver.drawLeftDiagnostics(0, f, true);
+    lastFuelCurrentUpdate = millis();
   }
 
   // if (millis()-lastLapTimeUpdate>=1000){
@@ -191,3 +221,8 @@ void loop(Display& driver) {
   // }
 }
 
+static void handleMessage_0 (const CANMessage & frame) {
+  RPM = 0.39063 * long((256*long(frame.data[0]) + frame.data[1]));
+  throttle = 0.0015259 * long((256*long(frame.data[4]) + frame.data[5]));
+  coolant_temp = frame.data[7];
+}

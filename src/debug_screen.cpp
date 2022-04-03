@@ -1,7 +1,6 @@
 #include "debug_screen.h"
 
-Debug_screen::Debug_screen() :
-    u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24) // Connect RD (orange) with +5V, FS0 and FS1 with GND
+Debug_screen::Debug_screen()
 {
 }
 
@@ -121,7 +120,20 @@ void Debug_screen::functioning_battery(const double value, const bool isFunc){
 }
 
 
-void Debug_screen::drawLeftDiagnostics(){
+void Debug_screen::drawLeftDiagnostics(char value, char diag, bool isFunc){
+
+    if(diag == mc){
+        if(!isFunc) drawDarkBox(0, 22, leftBoxLength, leftBoxHeight);
+        else clearBox(0, 22, leftBoxLength, leftBoxHeight);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(2,screeny - 95,String("Main").c_str());
+    }
+    if(diag == f){
+        if(!isFunc) drawDarkBox(leftBoxLength + 2, 22, leftBoxLength-4, leftBoxHeight);
+        else clearBox(leftBoxLength + 2, 22, leftBoxLength-4, leftBoxHeight);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(leftBoxLength + 2,screeny - 95,String("Fuel_C").c_str());
+    }
 
 }
 

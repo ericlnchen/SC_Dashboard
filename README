@@ -7,12 +7,20 @@ Thanks, to Jack Eagan and Stephen Baker for technical support understanding the 
 Current stage:
 	- All critical functions are completed for Driver's Dashboard 
 	- Implementing customized CAN code from the ECU to Dash
+	- Inheritance is now avaliable for any derived class on display class
 
 Future stages:
 	- Touchscreen capability
 	- Multiple Test Screens
 	- Other sensor data such as tyre temps and throttle position
 	- Other modes for the car
+
+Inhertiance Chart:
+
+display.h is a base class sending info to the dash
+	-> debug_screen.h is a public derived class from display.h
+
+main.cpp has a display and a debug_screen
 
 
 This directory is intended for PlatformIO Unit Testing and project tests.

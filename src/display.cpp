@@ -13,7 +13,6 @@ Display::Display() :
 {
 }
 
-
 void Display::initializeDisplay()
 {
     pinMode(23,OUTPUT);
