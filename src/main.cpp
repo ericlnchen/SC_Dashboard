@@ -13,6 +13,8 @@ unsigned long lastGearUpdate;
 unsigned long lastTimeUpdate;
 unsigned long lastMainCurrentUpdate;
 unsigned long lastFuelCurrentUpdate;
+unsigned long lastH20CurrentUpdate;
+unsigned long lastFanCurrentUpdate;
 
 
 //----------------- CAN -----------------//
@@ -29,7 +31,7 @@ unsigned char oil_temp = 105;
 
 //ID: 0x5F3
 unsigned char oil_pressure = 70;
-unsigned char coolant_temp = 102;
+unsigned char coolant_temp = 105;
 
 //ID: 0x5F4
 unsigned int gear;
@@ -47,7 +49,7 @@ unsigned int b_voltage;
 bool isUp = true;
 int cutoff = 6000;
 int lapTime[3] = {0,0,0};
-double voltage = 11.4;
+double voltage = 0.0;
 char gears[6] = {'N','1','2','3','4','5'};
 bool isWorking[4] = {true,true,true,true}; // coolant, battery, oil temp, oil pressure in this order
 char main_c = 0;
@@ -131,13 +133,23 @@ void loop(Debug_screen& driver) {
   }
 
   if(millis()-lastMainCurrentUpdate > 2000){
-    driver.drawLeftDiagnostics(0, mc, true);
+    driver.drawElectricDiagnostics(0, mc, false);
     lastMainCurrentUpdate = millis();
   }
   
-  if(millis()-lastFuelCurrentUpdate > 2000){
-    driver.drawLeftDiagnostics(0, f, true);
+  if(millis()-lastFuelCurrentUpdate > 4000){
+    driver.drawElectricDiagnostics(0, f, true);
     lastFuelCurrentUpdate = millis();
+  }
+
+  if(millis()-lastH20CurrentUpdate > 3000){
+    driver.drawElectricDiagnostics(0, h, true);
+    lastH20CurrentUpdate = millis();
+  }
+
+  if(millis()-lastFanCurrentUpdate > 5000){
+    driver.drawElectricDiagnostics(0, fa, true);
+    lastFanCurrentUpdate = millis();
   }
 
   // if (millis()-lastLapTimeUpdate>=1000){
@@ -169,56 +181,56 @@ void loop(Debug_screen& driver) {
   //   lastoil_pressureUpdate = millis();
   // }
 
-  // if (millis()-lastVoltUpdate>1000){
-  //   voltage=voltage+.1;
-  //   if(voltage <= 0.0){
-  //     voltage = 12.0;
-  //   }
-  //   else if(voltage >= 14.5){
-  //     voltage = 10;
-  //   }
-  //   if(voltage <= 11.5){
-  //     isWorking[1] = false;
-  //     driver.functioning_battery(voltage, false);
-  //   }
-  //   else{
-  //     isWorking[1] = true;
-  //     driver.functioning_battery(voltage, true);
-  //   }
-  //   lastVoltUpdate = millis();
-  // }
+  if (millis()-lastVoltUpdate>1000){
+    voltage=voltage+.1;
+    if(voltage <= 0.0){
+      voltage = 12.0;
+    }
+    else if(voltage >= 14.5){
+      voltage = 10;
+    }
+    if(voltage <= 11.5){
+      isWorking[1] = false;
+      driver.drawElectricDiagnostics(voltage, b, false);
+    }
+    else{
+      isWorking[1] = true;
+      driver.drawElectricDiagnostics(voltage, b, true);
+    }
+    lastVoltUpdate = millis();
+  }
 
-  // if (millis()-lastCTempUpdate>4000){
-  //   if(coolant_temp == 0){
-  //     coolant_temp = 99;
-  //   }
-  //   if(coolant_temp >= 100){
-  //     isWorking[0] = false;
-  //     driver.functioning(coolant_temp, cT, false);
-  //   }
-  //   else{
-  //     isWorking[0] = true;
-  //     driver.functioning(coolant_temp, cT, true);
-  //   }
-  //    --coolant_temp;
-  //   lastCTempUpdate = millis();
-  // }
+  if (millis()-lastCTempUpdate>4000){
+    if(coolant_temp == 0){
+      coolant_temp = 99;
+    }
+    if(coolant_temp >= 100){
+      isWorking[0] = false;
+      driver.drawTempDiagnostics(coolant_temp, cT, false);
+    }
+    else{
+      isWorking[0] = true;
+      driver.drawTempDiagnostics(coolant_temp, cT, true);
+    }
+     --coolant_temp;
+    lastCTempUpdate = millis();
+  }
 
-  // if (millis()-lastOTempUpdate>4500){
-  //   if(oil_temp == 0){
-  //     oil_temp = 99;
-  //   }
-  //   if(oil_temp >= 100){
-  //     isWorking[2] = false;
-  //     driver.functioning(oil_temp, oT, false);
-  //   }
-  //   else{
-  //     isWorking[2] = true;
-  //     driver.functioning(oil_temp, oT, true);
-  //   }
-  //   --oil_temp;
-  //   lastOTempUpdate = millis();
-  // }
+  if (millis()-lastOTempUpdate>4500){
+    if(oil_temp == 0){
+      oil_temp = 99;
+    }
+    if(oil_temp >= 100){
+      isWorking[2] = false;
+      driver.drawTempDiagnostics(oil_temp, oT, false);
+    }
+    else{
+      isWorking[2] = true;
+      driver.drawTempDiagnostics(oil_temp, oT, true);
+    }
+    --oil_temp;
+    lastOTempUpdate = millis();
+  }
 }
 
 static void handleMessage_0 (const CANMessage & frame) {

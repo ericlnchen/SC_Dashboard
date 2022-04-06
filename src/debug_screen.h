@@ -6,10 +6,10 @@ public:
     Debug_screen();
     void initializeDisplay();
     void drawBackground();
-    void drawLeftDiagnostics(char value, char diag, bool isFunc);
+    void drawElectricDiagnostics(const double value, const char diag, const bool isFunc);
+    void drawTempDiagnostics(const unsigned char value, const char diag, const bool isFunc);
     void drawRightDiagnostics();
     void drawBoxGauge(const unsigned int current, const unsigned int max, const unsigned int cutoff, const unsigned int redLine);
-    void functioning_battery(const double value, const bool isFunc);
 
 private:
     int leftBoxHeight = 32;

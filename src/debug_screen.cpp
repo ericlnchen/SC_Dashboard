@@ -97,44 +97,84 @@ void Debug_screen::drawBoxGauge(const unsigned int current, const unsigned int m
     u8g2.sendBuffer();
 }
 
-// to-do changing the coordinates in clear, drawDark, all draw strings
-void Debug_screen::functioning_battery(const double value, const bool isFunc){
-    if(isFunc) clearBox(54,55,50,31);
-    else drawDarkBox(54,55,50,31);
-    u8g2.setFont(u8g2_font_helvR08_tf);
-    u8g2.drawStr(2+53,screeny - 63,String("Battery").c_str());
-    u8g2.setFont(u8g2_font_VCR_OSD_mf);
-    u8g2.setFontMode(1);
-    int x0 = screenx/2;
-    int y0 = screeny/2;
-    if(value < 10){
-        u8g2.drawStr(x0-64 + fontx,y0+21,String(int(value)).c_str());
-    }
-    else{
-        u8g2.drawStr(x0-64,y0+21,String(int(value)).c_str());
-    }
-    int firstDecimal = int(value*10.0) % 10;
-    u8g2.drawStr(x0 - 35, y0+21,String(firstDecimal).c_str());
-    u8g2.drawStr(x0-64+fontx*2-fontx/4,y0+21,".");
-    u8g2.setFontMode(0);
-}
-
-
-void Debug_screen::drawLeftDiagnostics(char value, char diag, bool isFunc){
+void Debug_screen::drawElectricDiagnostics(const double value, const char diag, const bool isFunc){
 
     if(diag == mc){
         if(!isFunc) drawDarkBox(0, 22, leftBoxLength, leftBoxHeight);
         else clearBox(0, 22, leftBoxLength, leftBoxHeight);
         u8g2.setFont(u8g2_font_helvR08_tf);
         u8g2.drawStr(2,screeny - 95,String("Main").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength-13,screeny - 10 - leftBoxHeight*2,"A");
     }
     if(diag == f){
-        if(!isFunc) drawDarkBox(leftBoxLength + 2, 22, leftBoxLength-4, leftBoxHeight);
-        else clearBox(leftBoxLength + 2, 22, leftBoxLength-4, leftBoxHeight);
+        if(!isFunc) drawDarkBox(leftBoxLength + 1, 22, leftBoxLength-3, leftBoxHeight);
+        else clearBox(leftBoxLength + 1, 22, leftBoxLength-3, leftBoxHeight);
         u8g2.setFont(u8g2_font_helvR08_tf);
         u8g2.drawStr(leftBoxLength + 2,screeny - 95,String("Fuel_C").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength*2 - 15,screeny - 10 - leftBoxHeight*2,"A");
     }
+    if(diag == h){
+        if(!isFunc) drawDarkBox(0, 55, leftBoxLength, leftBoxHeight + 1);
+        else clearBox(0, 55, leftBoxLength, leftBoxHeight + 1);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(2,screeny - 62,String("H20_C").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength-13,screeny - 8 - leftBoxHeight,"A");
+    }
+    if(diag == fa){
+        if(!isFunc) drawDarkBox(leftBoxLength + 1, 55, leftBoxLength-3, leftBoxHeight + 1);
+        else clearBox(leftBoxLength + 1, 55, leftBoxLength-3, leftBoxHeight + 1);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(leftBoxLength + 2,screeny - 62,String("Fan_C").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength*2 - 15,screeny - 8 - leftBoxHeight,"A");
+    }
+    if(diag == b){
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.setFontMode(1);
+        int x0 = screenx/2;
+        int y0 = screeny/2;
+        if(!isFunc) drawDarkBox(x0 - 15,y0 + 47,38,11);
+        else clearBox(x0 - 15,y0 + 47,38,11);
+        u8g2.drawStr(x0+13,y0+57,String("V").c_str());
+        if(value < 10){
+            u8g2.drawStr(x0 - 5,y0+57,String(int(value)).c_str());
+        }
+        else{
+            u8g2.drawStr(x0 - 11,y0+57,String(int(value)).c_str());
+        }
+        // int firstDecimal = int(value*10.0) % 10;
+        // u8g2.drawStr(x0 - 35, y0+21,String(firstDecimal).c_str());
+        // u8g2.drawStr(x0-64+fontx*2-fontx/4,y0+21,".");
+        u8g2.setFontMode(0);
+    }
+}
 
+void Debug_screen::drawTempDiagnostics(const unsigned char value, const char diag, const bool isFunc){
+    if(diag == cT){
+        if(isFunc) clearBox(0,89,leftBoxLength,leftBoxHeight+1);
+        else drawDarkBox(0,89,leftBoxLength,leftBoxHeight+1);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(2,screeny - 28,String("Coolant").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength-14,screeny - 6,"C");
+        int x0 = (value>=100) ? 0 : fontx;
+        int y0 = screeny-fonty;
+        u8g2.drawStr(x0,y0 + 9,String(value).c_str());
+    }
+    if(diag == oT){
+        if(isFunc) clearBox(leftBoxLength+1, 89,leftBoxLength-3,leftBoxHeight+1);
+        else drawDarkBox(leftBoxLength+1, 89,leftBoxLength-3,leftBoxHeight+1);
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        u8g2.drawStr(leftBoxLength+2,screeny - 28,String("Oil").c_str());
+        u8g2.setFont(u8g2_font_VCR_OSD_mf);
+        u8g2.drawStr(leftBoxLength*2 - 15,screeny - 6,"C");
+        int x0 = (value>=100) ? 0 : fontx;
+        int y0 = screeny;
+        u8g2.drawStr(x0 + leftBoxLength - 1,y0 + 9 - fonty,String(value).c_str());
+    }
 }
 
 void Debug_screen::drawRightDiagnostics(){
