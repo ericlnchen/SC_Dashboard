@@ -4,23 +4,29 @@ SC Racing Dashboard
 Designed by Eric Chen
 Thanks, to Jack Eagan and Stephen Baker for technical support understanding the teensy and screen
 
+Special Thanks for Vihan Raj for developing CAN together and hardware debugging the hell outta the car
+
 Current stage:
 	- All critical functions are completed for Driver's Dashboard 
 	- Implementing customized CAN code from the ECU to Dash
-	- Inheritance is now avaliable for any derived class on display class
+	- Inheritance is now available for any derived class on display class
+	- Debug is half done
+	- Can works with old ECU AEM Infinity 7
 
 Future stages:
 	- Touchscreen capability
-	- Multiple Test Screens
 	- Other sensor data such as tyre temps and throttle position
 	- Other modes for the car
+	- Developing a SC_CAN library for use in other programs
 
-Inhertiance Chart:
+Inheritance Chart:
 
 display.h is a base class sending info to the dash
 	-> debug_screen.h is a public derived class from display.h
 
 main.cpp has a display and a debug_screen
+
+
 
 
 This directory is intended for PlatformIO Unit Testing and project tests.
