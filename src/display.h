@@ -1,16 +1,16 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 
-enum diagnostics {oT,oP,cT,b,h,f,fa,mc};
-
 class Display{
 public:
     Display();
     virtual void initializeDisplay();
     virtual void drawBackground();
     virtual void drawBoxGauge(const unsigned int current, const unsigned int max, const unsigned int cutoff, const unsigned int redLine);
-    virtual void functioning_battery(const double value, const bool isFunc);
-    void functioning(const unsigned char value, const char diagnostic, const bool isFunc);
+    void display_coolantTemp(const unsigned char value, const bool isFunc);
+    void display_oilTemp(const unsigned char value, const bool isFunc);
+    void display_oilPressure(const unsigned char value, const bool isFunc);
+    void display_batteryVoltage(const float value, const bool isFunc);
     void drawMph(const unsigned char mph);
     void drawGear(const char gear);
     void drawLapTime(int *lapTime);

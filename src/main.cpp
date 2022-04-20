@@ -1,5 +1,4 @@
-#include "debug_screen.h"
-#include "gps.h"
+#include "display.h"
 #include "ACAN.h"
 #include <ADC.h>
 #include <ADC_util.h>
@@ -74,8 +73,6 @@ Display driver = Display();
 ADC* adc = new ADC();
 
 //  Function Prototypes
-void setup(Display& driver);
-void loop(Display& driver);
 static void handleMessage_0 (const CANMessage & frame);
 static void handleMessage_1 (const CANMessage & frame);
 static void handleMessage_2 (const CANMessage & frame);
@@ -95,11 +92,6 @@ void setup() {
   driver.initializeDisplay();
   Serial.begin(9600);
   Serial.println("Entered Setup");
-
-  //----------------- Serial Init -----------------//
-  SPI.setMOSI(11); 
-  SPI.setMISO(12); 
-  SPI.setSCK(13);
 
   ACANSettings settings (500*1000); 
   const ACANPrimaryFilter primaryFilters [] = {
@@ -134,21 +126,21 @@ void loop() {
 
   ACAN::can0.dispatchReceivedMessage();
   
-  driver.drawBoxGauge(RPM, 12000,cutoff,10000);
+  driver.drawBoxGauge(throttle * 50, 12000,cutoff,10000);
 
-  if(coolant_temp >= 100){
-    isWorking[0] = false;
-    driver.functioning(coolant_temp, cT, false);
-  }
-  else{
-    isWorking[0] = true;
-    driver.functioning(coolant_temp, cT, true);
-  }
+  driver.display_coolantTemp(throttle, false);
 
-  if(voltage < 10.5) driver.functioning_battery(voltage,false);
-  else driver.functioning_battery(voltage, true);
-  Serial.print("Throttle: " );
-  Serial.println(throttle);
+  driver.display_oilTemp(throttle, false);
+
+  driver.display_oilPressure(throttle, false);
+
+  driver.drawMph(throttle);
+
+  driver.drawGear(throttle/10);
+
+  driver.display_batteryVoltage(throttle, false);
+
+  // Serial.println(throttle);
 }
 
 //----------------- CAN Handling -----------------//
@@ -162,7 +154,6 @@ static void handleMessage_1 (const CANMessage & frame) {
   speed = 0.00390625 * long((256*long(frame.data[2]) + frame.data[3]));
   gear = frame.data[4];
   voltage = 0.0002455 * long((256*long(frame.data[6]) + frame.data[7]));
-  Serial.print(voltage);
 }
 static void handleMessage_2 (const CANMessage & frame) {
   //fuel_pressure = 0.580151 * frame.data[3];
