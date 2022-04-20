@@ -33,9 +33,9 @@
 //  Test Variables
 // bool isUp = true;
 int cutoff = 6000;
-// int lapTime[3] = {0,0,0};
+int lapTime[3] = {0,0,0};
 // double voltage = 0.0;
-// char gears[6] = {'N','1','2','3','4','5'};
+char gears[6] = {'N','1','2','3','4','5'};
 // bool isWorking[4] = {true,true,true,true}; // coolant, battery, oil temp, oil pressure in this order
 // char main_c = 0;
 Display driver = Display();
@@ -56,17 +56,19 @@ void loop() {
 
   SCRCAN::getMessage();
   
-  driver.drawBoxGauge(SCRCAN::throttle * 50, 12000,cutoff,10000);
+  driver.drawBoxGauge(10500, 12000,cutoff,10000);
 
-  driver.display_coolantTemp(SCRCAN::throttle, false);
+  driver.display_coolantTemp(95, true);
 
-  driver.display_oilTemp(SCRCAN::throttle, false);
+  driver.display_oilTemp(101, false);
 
-  driver.display_oilPressure(SCRCAN::throttle, false);
+  driver.display_oilPressure(93, false);
 
-  driver.drawMph(SCRCAN::throttle);
+  driver.drawMph(79);
 
-  driver.drawGear(SCRCAN::throttle/10);
+  driver.drawGear(gears[3]);
 
-  driver.display_batteryVoltage(SCRCAN::throttle, false);
+  driver.display_batteryVoltage(14.4, true);
+
+  driver.drawLapTime(lapTime);
 }
