@@ -1,6 +1,9 @@
 #include <Arduino.h>
 #include <U8g2lib.h>
 
+#ifndef display
+#define display
+
 class Display{
 public:
     Display();
@@ -23,3 +26,5 @@ protected:
     void drawDarkBox(int x0, int y0, int w, int h);
     U8G2_T6963_240X128_F_8080 u8g2;
 };
+
+#endif
