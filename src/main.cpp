@@ -73,6 +73,7 @@ void loop() {
   if(current_throttle != last_throttle){
     driver.drawMph(current_throttle);
     last_throttle = current_throttle;
+    driver.u8g2.updateDisplay(); // uses update display so screen doesn't always refresh
   }
   if(current_coolantTemp != last_coolantTemp){
     if(current_coolantTemp < 100){
@@ -80,7 +81,6 @@ void loop() {
     }
     else driver.display_coolantTemp(current_coolantTemp, false);
     last_coolantTemp = current_coolantTemp;
+    driver.u8g2.updateDisplay(); // uses update display so screen doesn't always refresh
   }
-
-  driver.u8g2.updateDisplay(); // uses update display so screen doesn't always refresh
 }
