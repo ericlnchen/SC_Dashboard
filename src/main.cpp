@@ -1,7 +1,8 @@
-#include "display.h"
-#include "SCRCAN.hpp"
+#include <display.h>
+#include <SCRCAN.hpp>
 #include <ADC.h>
 #include <ADC_util.h>
+#include <SPI.h>
 
 //----------------- PIN DEFS -----------------//
 #define LCD1      0  //(RX)
@@ -31,14 +32,17 @@
 //                A14 | N/U       <- DAC (not used, use as a digital pin if possible)
 
 //  Test Variables
-// bool isUp = true;
 int cutoff = 6000;
 int lapTime[3] = {0,0,0};
-// double voltage = 0.0;
 char gears[6] = {'N','1','2','3','4','5'};
-// bool isWorking[4] = {true,true,true,true}; // coolant, battery, oil temp, oil pressure in this order
-// char main_c = 0;
 Display driver = Display();
+
+
+// IMPORTANT control variables
+int current_throttle;
+int last_throttle;
+int current_coolantTemp;
+int last_coolantTemp;
 
 
 ADC* adc = new ADC();
@@ -49,26 +53,34 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Entered Setup");
 
+    //----------------- Serial Init -----------------//
+  SPI.setMOSI(11); 
+  SPI.setMISO(12); 
+  SPI.setSCK(13);
+
   SCRCAN::can_init();
 }
 
 void loop() {
 
-  SCRCAN::getMessage();
-  
-  driver.drawBoxGauge(10500, 12000,cutoff,10000);
+  SCRCAN::getMessage(); // receives CAN
 
-  driver.display_coolantTemp(95, true);
+  //  assigning CAN values to stored variables makes sure read and display values are equal
+  current_throttle = SCRCAN::throttle;
+  current_coolantTemp = SCRCAN::coolant_temp;
 
-  driver.display_oilTemp(101, false);
+  // only updates if theres a difference, so bus wont get cluttered
+  if(current_throttle != last_throttle){
+    driver.drawMph(current_throttle);
+    last_throttle = current_throttle;
+  }
+  if(current_coolantTemp != last_coolantTemp){
+    if(current_coolantTemp < 100){
+      driver.display_coolantTemp(current_coolantTemp, true);
+    }
+    else driver.display_coolantTemp(current_coolantTemp, false);
+    last_coolantTemp = current_coolantTemp;
+  }
 
-  driver.display_oilPressure(93, false);
-
-  driver.drawMph(79);
-
-  driver.drawGear(gears[3]);
-
-  driver.display_batteryVoltage(14.4, true);
-
-  driver.drawLapTime(lapTime);
+  driver.u8g2.updateDisplay(); // uses update display so screen doesn't always refresh
 }

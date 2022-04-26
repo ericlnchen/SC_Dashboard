@@ -17,6 +17,7 @@ public:
     void drawMph(const unsigned char mph);
     void drawGear(const char gear);
     void drawLapTime(int *lapTime);
+    U8G2_T6963_240X128_F_8080 u8g2;
 protected:
     int screenx = 240;
     int screeny = 128;
@@ -24,7 +25,7 @@ protected:
     int fonty = 15;
     void clearBox(int x0, int y0, int w, int h);
     void drawDarkBox(int x0, int y0, int w, int h);
-    U8G2_T6963_240X128_F_8080 u8g2;
+    unsigned long lastDisplayUpdate = 0;
 };
 
 #endif

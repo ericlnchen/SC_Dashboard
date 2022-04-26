@@ -11,7 +11,7 @@ void Display::initializeDisplay()
     // makes the teensy connect with the display
     pinMode(23,OUTPUT);
     analogWrite(23,100);
-
+    u8g2.setBusClock(8000000);
     u8g2.begin();   //  starts the u8g2 object
     u8g2.setContrast(255);
     u8g2.clearBuffer();
@@ -22,7 +22,6 @@ void Display::initializeDisplay()
     drawBackground();   //  sets up the screen of the display
     drawBoxGauge(0, 12000, 6000,10000);
     drawGear('N');
-    u8g2.sendBuffer();
 }
 
 //  clears a box making background white and text black
@@ -108,7 +107,7 @@ void Display::display_oilPressure(const unsigned char value, const bool isFunc){
 //  function that changes the battery voltage value
 void Display::display_batteryVoltage(const float value, const bool isFunc){
     if(isFunc) clearBox(54,55,50,31);
-    else drawDarkBox(54,55,50,31);
+    else drawDarkBox(54,55,50,31); // use set draw color
 
     u8g2.setFont(u8g2_font_helvR08_tf);
     u8g2.drawStr(55,65,String("Battery").c_str());
@@ -140,7 +139,6 @@ void Display::drawMph(const unsigned char mph) {
     } else {
         u8g2.drawStr(120 - 12,64 + 34, String(mph).c_str());
     }
-    u8g2.sendBuffer();
 }
 
 void Display::drawLapTime(int *lapTime){
@@ -227,5 +225,4 @@ void Display::drawBoxGauge(const unsigned int current, const unsigned int max, c
         u8g2.drawStr(screenx/2+25,screeny/2+29,"SHIFT");
         u8g2.setFont(u8g2_font_logisoso18_tf);
     }
-    u8g2.sendBuffer();
 }
