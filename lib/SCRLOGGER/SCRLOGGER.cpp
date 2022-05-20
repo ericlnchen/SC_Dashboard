@@ -1,10 +1,10 @@
 #include "SCRLOGGER.hpp"
-#include "globalData.h"
+#include <globalData.h>
+
 
 char logFile[13] = "log"; //Start each logfile with "Log"
 char dir[64] = "/Datalogs/"; //Store the log files in a folder called "datalogs"
 char logFileDir[77] = " "; // allocate a string to lead to the datalog file we will create
-bool newLog = true;
 #define SD_FAT_TYPE 3
 const uint8_t SD_CS_PIN = SDCARD_SS_PIN;
 #define SD_CONFIG SdioConfig(FIFO_SDIO)
@@ -19,15 +19,26 @@ time_t getTeensy3Time()
 {
   return (Teensy3Clock.get() - (8 * 3600)); // Shift the time so it is consistant with PST
 }
-// String millisecond()
-//   {
-//     char milisString [4] = "000";
-//     sprintf(milisString,"%03i",milliseconds % 1000);
-//     //char *str = malloc(4); // allocate a location to pass on the string
-//     //strcpy(str,milisString); // copy the desired string to pass
-//     //free(str); // free the allocated space
-//     return (milisString);
-//   }
+
+void millisecondUpdate() // this might not be a good idea since the loop speed may be slow enough to constantly reset miliseconds mid second
+{
+  if(second() - lastSeconds != 0) // if one second has passed
+  {
+    lastSeconds = second(); // reset the counter
+    if(milliseconds % 1000 != 0) // check to see if milliseconds has rolled over
+     {
+     // if it hasn't just rolled over then reset it
+      milliseconds = 0;
+    }
+  } 
+}
+
+void initializeSysClock()
+{
+  setSyncProvider(getTeensy3Time);
+  updateMillisecond.begin(millisecondUpdate,500); // update the milisecond to the nearest .5ms
+}
+
 
 unsigned int rtc_ms() 
 {
@@ -57,24 +68,7 @@ unsigned int rtc_ms()
 	//return(secs*1000 + us/1000);   // ms
   return(us/1000);   // ms but just the value in between seconds
 }
-void millisecondUpdate() // this might not be a good idea since the loop speed may be slow enough to constantly reset miliseconds mid second
-{
-  if(second() - lastSeconds != 0) // if one second has passed
-  {
-    lastSeconds = second(); // reset the counter
-    if(milliseconds % 1000 != 0) // check to see if milliseconds has rolled over
-     {
-     // if it hasn't just rolled over then reset it
-      milliseconds = 0;
-    }
-  } 
-}
-void initializeSysClock()
-{
-  setSyncProvider(getTeensy3Time);
-  updateMillisecond.begin(millisecondUpdate,500); // update the milisecond to the nearest .5ms
-}
-// 3 
+
 String constructDateTime(uint8_t i)
 { 
   char dateTimeString[64] = "";
@@ -123,7 +117,6 @@ void initializeSD(){
         loggingStatus = dirError;
         return;
       } 
-      
 }
 
 bool initializeLog()
@@ -165,38 +158,23 @@ bool initializeLog()
   }
   return(true);
 }
-void logData()
-{
-  if(loggingActive) // if logging is on now
+void logData(){
+  if(newLog) // check if this is a new log
   {
-    if(newLog) // check if this is a new log
-    {
-      if(!initializeLog()){
-        loggingActive = false; // stop any future logging pocess if the log fails to initialize
-        return; // do not continue
-      } // make a new log if it fails stop the log
-      loggingStatus = logRunning; // note that the logging is now running
-      newLog = false; // the log has been made
-    }
-    dataFile.open(logFileDir, FILE_WRITE);
-   ///* Preview of the data writing process
-              char dataString [256] = "\nData ERROR\n\n"; // if there is a problem for some reason go down a line and make a note of it
-              sprintf(dataString,"%s,%i,%i,%i,%i,%f\n",
-              constructDateTime(4).c_str(),
-              current_throttle, current_coolantTemp, current_oilTemp, 
-              current_oilPressure, current_battery
-              );
-              dataFile.print(dataString);
-              //*/
-              
-    dataFile.close();
+    initializeLog();
+    newLog = false;
   }
-  else
-  {
-    newLog = true; // start a new log next time
-    if(loggingStatus == logRunning) // if the log status was previously running
-    loggingStatus = loggingOff; // set the status to off
-  }
+  dataFile.open(logFileDir, FILE_WRITE);
+  ///* Preview of the data writing process
+  char dataString [256] = "\nData ERROR\n\n"; // if there is a problem for some reason go down a line and make a note of it
+  sprintf(dataString,"%s,%i,%i,%i,%i,%f\n",
+  constructDateTime(4).c_str(),
+  current_throttle, current_oilTemp, current_oilPressure, 
+  current_coolantTemp, current_battery);
+  dataFile.print(dataString);
+  //*/
+  Serial.println(2);
+  dataFile.close();
 }
 
 // Idea: have logging functions implemented like screens. There can be a log function pointer that log data calls

@@ -4,12 +4,10 @@
 #include <SdFat.h>
 
 time_t getTeensy3Time();
-//String millisecond();
-//void updateMillisecond();
-String constructDateTime(uint8_t i);
 void initializeSysClock();
-void millisecondUpdate();
+String constructDateTime(uint8_t i);
 void initializeSD();
+bool initializeLog();
 void logData();
 //void FilePrintTime(FsFile dataFile, char fullTime);
 

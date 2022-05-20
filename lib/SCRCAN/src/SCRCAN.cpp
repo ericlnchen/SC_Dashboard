@@ -55,78 +55,100 @@ namespace SCRCAN {
 
     //----------------- CAN Handling -----------------//
 
-    void can_init(){
-        ACANSettings settings (500*1000); 
-        const ACANPrimaryFilter primaryFilters [] = {
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A000, handleMessage_0),// 0x01F0A000 0xF88A000
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A003, handleMessage_1), 
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A004, handleMessage_2), //oil pressure
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A005, handleMessage_3), //launch active (laungh ramp time?)
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A007, handleMessage_4), //oil temp logging
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A008, handleMessage_5), //launch rpm fuel cut
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A010, handleMessage_6), //Sparkcut fuelcut
-            ACANPrimaryFilter (kData, kExtended, 0x01F0A012, handleMessage_7), //tc_slip measured
-            ACANPrimaryFilter (kData, kExtended, 0x0000A0000, handleMessage_8),
-            ACANPrimaryFilter (kData, kExtended, 0x0000A0001, handleMessage_9),
-            ACANPrimaryFilter (kData, kExtended, 0x0000A0003, handleMessage_10),
-            ACANPrimaryFilter (kData, kExtended, 0x0000A0004, handleMessage_11)
-        };
-        Serial.println("ACANSettings done");
-
-        const uint32_t errorCode = ACAN::can0.begin (settings, primaryFilters, 12);
-        if (0 == errorCode) {
-            Serial.println ("can0 ok");
-        }
-        else{
-            Serial.print ("Error can0: ");
-            Serial.println (errorCode);
+    FlexCAN_T4<CAN0, RX_SIZE_256, TX_SIZE_16> can0;
+    const int NUM_RX_MAILBOXES = 12;
+    void init(int pin)
+    {
+        can0.begin();
+        can0.setBaudRate(500000);
+        can0.setMaxMB(NUM_RX_MAILBOXES);
+        for (int i = 0; i < NUM_RX_MAILBOXES; i++){ // set all the AEM's extended frames
+            can0.setMB((FLEXCAN_MAILBOX)i, RX, EXT);
         }
 
-        Serial.println("End Setup");
+        can0.setMBFilter(REJECT_ALL);
+        can0.enableMBInterrupts();
+
+        can0.onReceive(MB0, AEM_handleMessage_0);
+        can0.onReceive(MB1, AEM_handleMessage_1);
+        can0.onReceive(MB2, AEM_handleMessage_2);
+        can0.onReceive(MB3, AEM_handleMessage_3);
+        can0.onReceive(MB4, AEM_handleMessage_4);
+        can0.onReceive(MB5, AEM_handleMessage_5);
+        can0.onReceive(MB6, AEM_handleMessage_6);
+        can0.onReceive(MB7, AEM_handleMessage_7);
+        can0.onReceive(MB8, AEM_handleMessage_8);
+        can0.onReceive(MB9, AEM_handleMessage_9);
+        can0.onReceive(MB10, AEM_handleMessage_10);
+        can0.onReceive(MB11, AEM_handleMessage_11);
+        can0.setMBUserFilter(MB0, 0x01F0A000, 0xFF); // 0x01F0A000 0xF88A000
+        can0.setMBUserFilter(MB1, 0x01F0A003, 0xFF);
+        can0.setMBUserFilter(MB2, 0x01F0A004, 0xFF); // oil pressure
+        can0.setMBUserFilter(MB3, 0x01F0A005, 0xFF); // launch active (laungh ramp time?)
+        can0.setMBUserFilter(MB4, 0x01F0A007, 0xFF); // oil temp logging
+        can0.setMBUserFilter(MB5, 0x01F0A008, 0xFF); // launch rpm fuel cut
+        can0.setMBUserFilter(MB6, 0x01F0A010, 0xFF); // Sparkcut fuelcut
+        can0.setMBUserFilter(MB7, 0x01F0A012, 0xFF); // tc_slip measured
+        can0.setMBUserFilter(MB8, 0x0000A0000, 0xFF);
+        can0.setMBUserFilter(MB9, 0x0000A0001, 0xFF);
+        can0.setMBUserFilter(MB10, 0x0000A0003, 0xFF);
+        can0.setMBUserFilter(MB11, 0x0000A0004, 0xFF);
+        can0.mailboxStatus();
+
+        // STBY pin on MCP2561 transceiver needs to be set LOW to turn it on
+        if (pin != -1)
+        {
+        Serial.printf("Set Digital %d LOW for STBY\n", pin);
+        pinMode(pin, OUTPUT);
+        digitalWrite(pin, LOW);
+        }
+        Serial.println("End Setup CAN");
     }
 
-    void getMessage(){
-        ACAN::can0.dispatchReceivedMessage();
+    void getMessage() {
+        can0.events();
     }
 
-    void handleMessage_0(const CANMessage &frame)
+    void AEM_handleMessage_0(const CAN_message_t &frame)
     {
-        RPM = 0.39063 * long((256 * long(frame.data[0]) + frame.data[1]));
-        throttle = 0.0015259 * long((256 * long(frame.data[4]) + frame.data[5]));
-        coolant_temp = frame.data[7];
+        // Serial.println("Read throttle");
+        RPM = 0.39063 * long((256 * long(frame.buf[0]) + frame.buf[1]));
+        throttle = 0.0015259 * long((256 * long(frame.buf[4]) + frame.buf[5]));
+        coolant_temp = frame.buf[7];
     }
-    void handleMessage_1(const CANMessage &frame)
+    void AEM_handleMessage_1(const CAN_message_t &frame)
     {
-        // converted from kph to mph
-        speed = 0.00390625 * long((256 * long(frame.data[2]) + frame.data[3]));
-        gear = frame.data[4];
-        voltage = 0.0002455 * long((256 * long(frame.data[6]) + frame.data[7]));
-        //Serial.print(voltage);
+        // Serial.println("Read voltage");
+        //  converted from kph to mph
+        speed = 0.00390625 * long((256 * long(frame.buf[2]) + frame.buf[3]));
+        gear = frame.buf[4];
+        voltage = 0.0002455 * long((256 * long(frame.buf[6]) + frame.buf[7]));
+        // Serial.print(voltage);
     }
-    void handleMessage_2(const CANMessage &frame)
+    void AEM_handleMessage_2(const CAN_message_t &frame)
     {
-        //Serial.println("Read fuel/oil");
-        fuel_pressure = 0.580151 * frame.data[3];
-        oil_pressure = 0.580151 * frame.data[4];
-        VE = frame.data[2];
+        // Serial.println("Read fuel/oil");
+        fuel_pressure = 0.580151 * frame.buf[3];
+        oil_pressure = 0.580151 * frame.buf[4];
+        VE = frame.buf[2];
     }
-    void handleMessage_3(const CANMessage &frame)
+    void AEM_handleMessage_3(const CAN_message_t &frame)
     {
         // Serial.println("Read launch ctrl");
-        launch_active = frame.data[8]; // Check, its bit 1 of byte 7 in the frame.
+        launch_active = frame.buf[7]; // Check, its bit 1 of byte 7 in the frame.
     }
-    void handleMessage_4(const CANMessage &frame)
+    void AEM_handleMessage_4(const CAN_message_t &frame)
     {
         // Serial.print("Read oil temp");
-        oil_temp = frame.data[4] - 50;
-        logging = frame.data[8]; // Check, its bit 1 of byte 7 in the frame.
+        oil_temp = frame.buf[4] - 50;
+        logging = frame.buf[7]; // Check, its bit 1 of byte 7 in the frame.
     }
-    void handleMessage_5(const CANMessage &frame)
+    void AEM_handleMessage_5(const CAN_message_t &frame)
     {
         // Serial.println("Read launch rpm");
-        launch_rpm = 0.39063 * long((256 * long(frame.data[3]) + frame.data[4]));
+        launch_rpm = 0.39063 * long((256 * long(frame.buf[3]) + frame.buf[4]));
 
-        if (frame.data[7] == 0)
+        if (frame.buf[7] == 0)
         {
         error = 0;
         }
@@ -135,41 +157,42 @@ namespace SCRCAN {
         error = 1;
         }
     }
-    void handleMessage_6(const CANMessage &frame)
+    void AEM_handleMessage_6(const CAN_message_t &frame)
     {
         // Serial.println("Fuel cut");
-        TC_FuelCut = frame.data[0] * 0.392157;  //% Fuel Cut
-        TC_SparkCut = frame.data[1] * 0.392157; //% Spark Cut
-        TC_Mode = frame.data[4];                // TC Strength
+        TC_FuelCut = frame.buf[0] * 0.392157;  //% Fuel Cut
+        TC_SparkCut = frame.buf[1] * 0.392157; //% Spark Cut
+        TC_Mode = frame.buf[4];                // TC Strength
     }
-    void handleMessage_7(const CANMessage &frame)
+    void AEM_handleMessage_7(const CAN_message_t &frame)
     {
         // converted from kph to mph
-        traction_control = 0.01242742 * long((256 * long(frame.data[0]) + frame.data[1]));
-        TC_SlipMeas = 0.01242742 * long((256 * long(frame.data[2]) + frame.data[3])); // 0 - 1310.7 kph
+        traction_control = 0.01242742 * long((256 * long(frame.buf[0]) + frame.buf[1]));
+        TC_SlipMeas = 0.01242742 * long((256 * long(frame.buf[2]) + frame.buf[3])); // 0 - 1310.7 kph
     }
-    void handleMessage_8(const CANMessage &frame)
+    void AEM_handleMessage_8(const CAN_message_t &frame)
     {
-        gps_lat = (frame.data[0] - 2147483647.5) * 4.19095159 * pow(10, -8);
-        gps_long = (frame.data[4] - 2147483647.5) * 8.38190317 * pow(10, -8); // assuming deg range uses all 32 bits
+        gps_lat = (frame.buf[0] - 2147483647.5) * 4.19095159 * pow(10, -8);
+        gps_long = (frame.buf[4] - 2147483647.5) * 8.38190317 * pow(10, -8); // assuming deg range uses all 32 bits
     }
-    void handleMessage_9(const CANMessage &frame)
+    void AEM_handleMessage_9(const CAN_message_t &frame)
     {
-        gps_speed = 0.01 * long((256 * long(frame.data[0]) + frame.data[1]));
-        gps_altitude = long((256 * long(frame.data[2]) + frame.data[3]));
+        gps_speed = 0.01 * long((256 * long(frame.buf[0]) + frame.buf[1]));
+        gps_altitude = long((256 * long(frame.buf[2]) + frame.buf[3]));
         // this is signed, not sure how the library converts it; it is signed by magnitude, not 2's complement
     }
-    void handleMessage_10(const CANMessage &frame)
+    void AEM_handleMessage_10(const CAN_message_t &frame)
     {
         // all 16 bit signed...
-        x_acceleration = 0.000244141 * long((256 * long(frame.data[0]) + frame.data[1]));
-        y_acceleration = 0.000244141 * long((256 * long(frame.data[2]) + frame.data[3]));
-        z_acceleration = 0.000244141 * long((256 * long(frame.data[4]) + frame.data[5]));
+        x_acceleration = 0.000244141 * long((256 * long(frame.buf[0]) + frame.buf[1]));
+        y_acceleration = 0.000244141 * long((256 * long(frame.buf[2]) + frame.buf[3]));
+        z_acceleration = 0.000244141 * long((256 * long(frame.buf[4]) + frame.buf[5]));
     }
-    void handleMessage_11(const CANMessage &frame)
+    void AEM_handleMessage_11(const CAN_message_t &frame)
     {
-        x_yaw = 0.015258789 * long((256 * long(frame.data[0]) + frame.data[1]));
-        y_yaw = 0.015258789 * long((256 * long(frame.data[2]) + frame.data[3]));
-        z_yaw = 0.015258789 * long((256 * long(frame.data[4]) + frame.data[5]));
+        x_yaw = 0.015258789 * long((256 * long(frame.buf[0]) + frame.buf[1]));
+        y_yaw = 0.015258789 * long((256 * long(frame.buf[2]) + frame.buf[3]));
+        z_yaw = 0.015258789 * long((256 * long(frame.buf[4]) + frame.buf[5]));
     }
+
 }

@@ -11,8 +11,11 @@ int last_coolantTemp = 0;
 int last_oilTemp = 0;
 int last_oilPressure = 0;
 float last_battery = 0;
+
+int longDifference = 500;
 bool loggingActive = false;
 bool loggingSuccessful = false;
+bool newLog = true;
 loggingState loggingStatus = sdError;
 
 unsigned int gpsUpdateTime = 0;

@@ -15,6 +15,8 @@ extern int last_oilTemp;
 extern int last_oilPressure;
 extern float last_battery;
 
+extern int logDifference;
+extern bool newLog;
 extern bool loggingActive;
 extern bool loggingSuccessful;
 enum loggingState {logRunning,sdError,dirError,fileError,loggingOff};

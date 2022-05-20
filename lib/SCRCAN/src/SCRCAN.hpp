@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include <ACAN.h>
+#include <FlexCAN_T4.h>
 
 namespace SCRCAN
 {
@@ -60,18 +60,18 @@ namespace SCRCAN
   extern int z_yaw;
 
   //  Function Prototypes for all 12 packets
-  void handleMessage_0 (const CANMessage & frame);
-  void handleMessage_1 (const CANMessage & frame);
-  void handleMessage_2 (const CANMessage & frame);
-  void handleMessage_3 (const CANMessage & frame);
-  void handleMessage_4 (const CANMessage & frame);
-  void handleMessage_5 (const CANMessage & frame);
-  void handleMessage_6 (const CANMessage & frame);
-  void handleMessage_7 (const CANMessage & frame);
-  void handleMessage_8 (const CANMessage & frame);
-  void handleMessage_9 (const CANMessage & frame);
-  void handleMessage_10 (const CANMessage & frame);
-  void handleMessage_11 (const CANMessage & frame);
+  void AEM_handleMessage_0 (const CAN_message_t & frame);
+  void AEM_handleMessage_1 (const CAN_message_t & frame);
+  void AEM_handleMessage_2 (const CAN_message_t & frame);
+  void AEM_handleMessage_3 (const CAN_message_t & frame);
+  void AEM_handleMessage_4 (const CAN_message_t & frame);
+  void AEM_handleMessage_5 (const CAN_message_t & frame);
+  void AEM_handleMessage_6 (const CAN_message_t & frame);
+  void AEM_handleMessage_7 (const CAN_message_t & frame);
+  void AEM_handleMessage_8 (const CAN_message_t & frame);
+  void AEM_handleMessage_9 (const CAN_message_t & frame);
+  void AEM_handleMessage_10 (const CAN_message_t & frame);
+  void AEM_handleMessage_11 (const CAN_message_t & frame);
 
   /**
    * @brief initialize mcp2561 + CAN transmission
