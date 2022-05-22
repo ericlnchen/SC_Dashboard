@@ -25,6 +25,7 @@ unsigned long lastVoltUpdate = 0;
 unsigned long lastLogUpdate = 0;
 
 IntervalTimer CANRead;
+IntervalTimer LOGWrite;
 void setup() {
   driver.initializeDisplay();
   // initializeSysClock();
@@ -36,7 +37,8 @@ void setup() {
   pinMode(13, OUTPUT);
   digitalWrite(13, HIGH);
   CANRead.begin(SCRCAN::getMessage, 32);
-  driver.u8g2.sendBuffer();
+  // LOGWrite.begin(logData, 32);
+  driver.sendAll();
 }
 
 void loop() {
@@ -59,7 +61,7 @@ void loop() {
   if(current_throttle != last_throttle){
     driver.drawMph(current_throttle);
     last_throttle = current_throttle;
-    driver.u8g2.updateDisplay();
+    driver.sendAll();
   }
 
   // // UPDATES COOLANT TEMPERATURE

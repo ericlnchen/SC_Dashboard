@@ -1,9 +1,17 @@
 #include "display.h"
 #include <string>
+#include <cmath>
+#include <map>
 
-Display::Display() :
-    u8g2(U8G2_R2, 2, 14, 7, 8, 6, 20, 21, 5, /*enable/wr=*/ 27 , /*cs/ce=*/ 26, /*dc=*/ 25, /*reset=*/24) // Connect RD (orange) with +5V, FS0 and FS1 with GND
-{
+#define u8g2 painter.u8g2
+
+void wipeAll(){
+    u8g2.drawBox(0,0,240,128);
+    u8g2.sendBuffer();
+}
+
+Display::Display(){
+   mb.assignAction(&wipeAll);
 }
 
 void Display::initializeDisplay()
@@ -18,7 +26,7 @@ void Display::initializeDisplay()
     u8g2.setFont(u8g2_font_helvR12_tf);
     u8g2.drawStr(32,18,"Driver Booting");
     u8g2.sendBuffer();
-    delay(3000);
+    delay(1500);
     drawBackground();   //  sets up the screen of the display
     drawBoxGauge(0, 12000, 6000,10000);
     drawGear('N');
@@ -36,6 +44,10 @@ void Display::drawDarkBox(int x0, int y0, int w, int h) {
     u8g2.setDrawColor(1);
     u8g2.drawBox(x0,y0,w,h);
     u8g2.setDrawColor(0);
+}
+
+void Display::sendAll(){
+    u8g2.updateDisplay();
 }
 
 //  draws the frames and text that are present on the display, runs only once

@@ -1,8 +1,8 @@
-#include <Arduino.h>
-#include <U8g2lib.h>
+#ifndef DISPLAY_H
+#define DISPLAY_H
+#include <globalData.h>
+#include <touch.hpp>
 
-#ifndef display
-#define display
 
 class Display{
 public:
@@ -17,8 +17,10 @@ public:
     void drawMph(const unsigned char mph);
     void drawGear(const char gear);
     void drawLapTime(int *lapTime);
-    U8G2_T6963_240X128_F_8080 u8g2;
+    void sendAll();
+
 protected:
+    button mb = button("Menu", 190, 110);
     int screenx = 240;
     int screeny = 128;
     int fontx = 12;
