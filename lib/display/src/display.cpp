@@ -29,7 +29,7 @@ void Display::initializeDisplay()
     delay(1500);
     drawBackground();   //  sets up the screen of the display
     drawBoxGauge(0, 12000, 6000,10000);
-    drawGear('N');
+    drawGear('E');
 }
 
 //  clears a box making background white and text black
