@@ -10,12 +10,14 @@ void wipeAll(){
     u8g2.sendBuffer();
 }
 
-Display::Display(){
-   mb.assignAction(&wipeAll);
+Display::Display() : mb(190, 110, 16, 20)
+{
+    mb.assignAction(&wipeAll);
 }
 
 void Display::initializeDisplay()
 {   
+    u8g2.clearBuffer();
     // makes the teensy connect with the display
     pinMode(23,OUTPUT);
     analogWrite(23,100);
@@ -27,9 +29,10 @@ void Display::initializeDisplay()
     u8g2.drawStr(32,18,"Driver Booting");
     u8g2.sendBuffer();
     delay(1500);
+    mb.initialize("MENU");
     drawBackground();   //  sets up the screen of the display
     drawBoxGauge(0, 12000, 6000,10000);
-    drawGear('E');
+    drawGear('N');
 }
 
 //  clears a box making background white and text black
@@ -69,6 +72,7 @@ void Display::drawBackground() {
 
     u8g2.setFont(u8g2_font_VCR_OSD_mf);
     u8g2.drawStr(2 + fontx*4-5,109,":");
+    u8g2.sendBuffer();
 
 }
 

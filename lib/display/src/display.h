@@ -1,6 +1,5 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
-#include <globalData.h>
 #include <touch.hpp>
 
 
@@ -20,7 +19,7 @@ public:
     void sendAll();
 
 protected:
-    button mb = button("Menu", 190, 110);
+    button mb;
     int screenx = 240;
     int screeny = 128;
     int fontx = 12;

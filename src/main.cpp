@@ -14,7 +14,7 @@ int lapTime[3] = {0,0,0};
 char gears[6] = {'N','1','2','3','4','5'};
 
 // IMPORTANT objects
-Display driver = Display(); // Driver Display
+Display driver;
 
 // scheduling variables
 unsigned long lastRpmUpdate = 0;
@@ -25,9 +25,9 @@ unsigned long lastVoltUpdate = 0;
 unsigned long lastLogUpdate = 0;
 
 IntervalTimer CANRead;
-IntervalTimer LOGWrite;
+// IntervalTimer LOGWrite;
 void setup() {
-  driver.initializeDisplay();
+  Serial.println("1");
   // initializeSysClock();
   // initializeSD();
   Serial.begin(9600);
@@ -36,6 +36,8 @@ void setup() {
   SPI.setSCK(13);
   pinMode(13, OUTPUT);
   digitalWrite(13, HIGH);
+  driver = Display(); // Driver Display
+  driver.initializeDisplay();
   CANRead.begin(SCRCAN::getMessage, 32);
   // LOGWrite.begin(logData, 32);
   driver.sendAll();

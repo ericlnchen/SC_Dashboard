@@ -12,7 +12,7 @@ int last_oilTemp = 0;
 int last_oilPressure = 0;
 float last_battery = 0;
 
-TSPoint p;
+// TSPoint p;
 Draw painter = Draw();
 
 int longDifference = 500;

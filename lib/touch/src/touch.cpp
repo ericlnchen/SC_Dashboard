@@ -1,7 +1,5 @@
 #include "touch.hpp"
 
-#define u8g2 painter.u8g2
-
 void modifyPointToScreen(){
     p.x =  map(p.x,100,944,0,240);
     p.y =  map(p.y,190,860,0,128);
@@ -165,57 +163,30 @@ bool touchEvent::isAreaTapped(int xCenter, int yCenter, int width, int height){
     return(true);
 }
 
-button::button(const char* text, const int x, const int y){
+button::button(const int x, const int y, const int height, const int width){
 
     this->x0 = x;
     this->y0 = y;
-    this->setText(text);
+    this->h0 = height;
+    this->w0 = width;
+}
 
-    // draw the button
+void button::initialize(String text){
     u8g2.setFont(u8g2_font_logisoso16_tr);
-    width = u8g2.getStrWidth(message);
-    height = u8g2.getAscent() - u8g2.getDescent(); // the area the digit can occupy
-
-    int text_y0 = y0 - u8g2.getAscent(); // the upper corner of the digit
-    if(useTopCordinate){
-        text_y0 = y0;
-        y0 = y0 + u8g2.getAscent(); // shift the start of the text down by the rise in the text
-    }
-    // todo there should be a variable to adjust padding or the amount of space on the edge
-    int xPadding = 1;
-    box_x0 = x0 - xPadding;
-    box_x1 = x0 + width + xPadding;
-
-    int yPadding = 2;
-    box_y0 = text_y0 - yPadding;
-    box_y1 = text_y0 + height + yPadding;
-    //draw the button
-    u8g2.drawStr(x0,y0,message);
-    u8g2.drawFrame(box_x0,box_y0,box_x1 - box_x0,box_y1 - box_y0);
+    u8g2.drawFrame(x0, y0, x0+w0, y0+h0);
+    u8g2.drawStr(x0 + x_padding,y0 + h0 + y_padding,"MENU");
 }
 
-void button::setText(const char* myMessage){
-    strcpy(message,myMessage);
-}
-    //void initialize
 void button::assignAction(void (*myFunction)())
 {
     actionFunction = myFunction;
     actionAssigned = true;
 }
-void button::draw()
-{
-    painter.clearBox(box_x0,box_y0,box_x1 - box_x0,box_y1 - box_y0);
-    u8g2.setFont(textFont);
-    u8g2.drawStr(x0,y0,message);
-    u8g2.drawFrame(box_x0,box_y0,box_x1 - box_x0,box_y1 - box_y0);
-}
 
-void button::fillButton()
-{
+void button::fillButton(){
     u8g2.setFontMode(1);
     u8g2.setDrawColor(1);
-    u8g2.drawBox(box_x0,box_y0,box_x1 - box_x0,box_y1 - box_y0);
+    u8g2.drawBox(x0,y0,w0,h0);
     u8g2.setDrawColor(2); // make sure the message will stay visable
     u8g2.setFont(textFont);
     u8g2.drawStr(x0,y0,message);
@@ -223,9 +194,9 @@ void button::fillButton()
     u8g2.setFontMode(0);
 }
 
-void button::read() // maybe call this read
+void button::read()
 {
-    if((tap.x >= box_x0) && (tap.x <= box_x1) && (tap.y >= box_y0) && (tap.y <= box_y1)) {
+    if((tap.x >= x0) && (tap.x <= x1) && (tap.y >= y0) && (tap.y <= y1)) {
     // check to see if the tap is inside the button box
         if(tap.isPressed()){ // if the user is pressing the button
         //if(tap.isAreaPressed(((box_x0 + box_x1)/2), ((box_y0 + box_y1)/2),40,20)){

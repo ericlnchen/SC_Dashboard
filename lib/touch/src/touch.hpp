@@ -5,6 +5,7 @@
 #define YM A3  // can be a digital pin
 #define XP A2   // can be a digital pin
 #define numTraces 4
+#define u8g2 painter.u8g2
 
 enum screens {menu,settings,gps,naughtTo60Timer};
 
@@ -42,30 +43,31 @@ private:
 
 class button{
 public:
-    int height = 0;
-    int width = 0;
-    const uint8_t* textFont = u8g2_font_VCR_OSD_mf; // note const uint8_t* is a pointer to a variable of const uint_8t and can still be modified
+    int h0 = 0;
+    int w0 = 0;
+    const uint8_t* textFont = u8g2_font_logisoso16_tr; // note const uint8_t* is a pointer to a variable of const uint_8t and can still be modified
     char message[32] = "DEFAULT";
     bool useTopCordinate = false;
     touchEvent tap;
 
-    button(const char* text, const int x0, const int y0);
+    button(const int x0, const int y0, const int height, const int width);
     void setText(const char* myMessage);
     void assignAction(void (*myFunction)());
     void draw();
     void fillButton();
     void read();
+    void initialize(String text);
 
  private:
+    int y_padding = 2;
+    int x_padding = 5;
     int x0 = 0;
     int y0 = 0;
+    int x1 = x0 + w0;
+    int y1 = y0 + h0;
     bool isActive = false;
     bool actionAssigned = false; // use this to avoid performing actions that wernt asigned.
     int text_y0 = 0; // top of the text message
-    int box_y0 = 0;
-    int box_y1 = 0;
-    int box_x0 = 0;
-    int box_x1 = 0;
     void (*actionFunction)(); // use this to point to the function we want called when the button is pressed
 
 };
